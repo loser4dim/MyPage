@@ -1505,12 +1505,12 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "25",
             title: "𝗧𝗵𝗲 𝟰𝘁𝗵 𝗔𝗻𝗻𝗶𝘃𝗲𝗿𝘀𝗮𝗿𝘆",
-            slug : ""
+            slug : "the-4th-anniv"
           },
           {
             day  : "31",
             title: "DJなんもわからん 4thAnniversary From:現実世界",
-            slug : ""
+            slug : "dj-unknown-4th-anniv"
           }
         ]
       },
@@ -1519,12 +1519,12 @@ export const DjIndex: EventYearGroup[] = [
         events: [
           {
             day  : "7",
-            title: "???",
-            slug : ""
+            title: "CLUB SILHOUETTE",
+            slug : "club-silhouette-24"
           },
           {
             day  : "16",
-            title: "???",
+            title: "𝗠𝗢𝗡𝗗𝗔𝗬 𝗥𝗘𝗟𝗜𝗘𝗙 301st MRGR001 Release Party -Day2-",
             slug : ""
           },
           {
@@ -1534,11 +1534,31 @@ export const DjIndex: EventYearGroup[] = [
           },
           {
             day  : "21",
-            title: "???",
+            title: "メディテラVR 3rdAnniv.",
             slug : ""
           },
           {
             day  : "28",
+            title: "???",
+            slug : ""
+          }
+        ]
+      },
+      {
+        month : "3",
+        events: [
+          {
+            day  : "13",
+            title: "???",
+            slug : ""
+          }
+        ]
+      },
+      {
+        month : "4",
+        events: [
+          {
+            day  : "1",
             title: "???",
             slug : ""
           }

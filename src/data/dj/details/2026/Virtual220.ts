@@ -1,34 +1,34 @@
 import { EventDetail } from "@/types/EventDetail";
 
 export const event: EventDetail = {
-  slug: "m4tt-and-friends-1",
+  slug : "m4tt-and-friends-1",
   title: "M4tt & Friends 9",
   date: {
-    year: 2026,
+    year : 2026,
     month: 1,
-    day: 9,
+    day  : 9,
   },
   time: {
     start: "21:00",
-    end: "25:40",
+    end  : "25:40"
   },
   place: {
-    name: "RIPPLE 2",
+    name    : "RIPPLE 2",
     platform: {
-      name: "VRChat",
-      instance: "Friends+",
+      name    : "VRChat",
+      instance: "Friends+"
     },
   },
   flyer: {
-    width: 1241,
+    width : 1241,
     height: 1241,
-    image: "/dj/2026/2026-VR-1.avif",
+    image : "/dj/2026/2026-VR-1.avif"
   },
   organizers: [
     {
       name: "M4tt",
-      url: "https://linktr.ee/M4Tyyyyy",
-    },
+      url : "https://linktr.ee/M4Tyyyyy"
+    }
   ],
   support: [
     {
@@ -36,43 +36,43 @@ export const event: EventDetail = {
       performers: [
         {
           name: "Aipo",
-          url: "https://x.com/aipo_vrc",
-        },
-      ],
+          url: "https://x.com/aipo_vrc"
+        }
+      ]
     },
     {
       role: "DJ",
       performers: [
         {
+          name: "loser4dim",
+        },
+        {
           name: "M4tt",
-          url: "https://linktr.ee/M4Tyyyyy",
+          url : "https://linktr.ee/M4Tyyyyy",
         },
         {
           name: "q330",
-          url: "https://x.com/q330vrc",
+          url : "https://x.com/q330vrc",
         },
         {
           name: "um",
-          url: "https://linktr.ee/umruumum",
-        },
-        {
-          name: "loser4dim",
-        },
-      ],
+          url : "https://linktr.ee/umruumum",
+        }
+      ]
     },
     {
       role: "VJ",
       performers: [
         {
           name: "Ende",
-          url: "https://poyandesuyo.com/",
+          url : "https://poyandesuyo.com/",
         },
         {
           name: "osirasekita",
-          url: "https://osirasekita.tumblr.com/",
-        },
-      ],
-    },
+          url : "https://osirasekita.tumblr.com/",
+        }
+      ]
+    }
   ],
   announcements: [
     {
@@ -83,49 +83,12 @@ export const event: EventDetail = {
   hashtags: ["M4ttFriends9", "VRChat"],
   timeSlot: [
     {
-<<<<<<< HEAD
-      start   : "21:00",
-      end     : "26:00",
+      start: "21:00",
+      end  : "26:00",
       performs: [
         {
           start: "21:00",
           end  : "21:50",
-          dj   : ["um"],
-          vj   : ["osirasekita"]
-        },
-        {
-          start: "22:00",
-          end  : "22:50",
-          dj   : ["loser4dim"],
-          vj   : ["Ende"]
-        },
-        {
-          start: "23:00",
-          end  : "23:50",
-          dj   : ["q330"],
-          vj   : ["osirasekita"]
-        },
-        {
-          start: "24:00",
-          end  : "24:40",
-          dj   : ["Aipo"],
-          vj   : ["Ende"]
-        },
-        {
-          start: "24:50",
-          end  : "25:40",
-          dj   : ["M4tt"],
-          vj   : ["osirasekita"]
-        }
-      ]
-    }
-=======
-      start: "21:00",
-      end: "26:00",
-      performs: [
-        {
-          start: "21:00",
-          end: "21:50",
           dj: ["um"],
           vj: ["osirasekita"],
         },
@@ -155,7 +118,6 @@ export const event: EventDetail = {
         },
       ],
     },
->>>>>>> 9a41a645ef5572b81e0a2f27d7dc45fd8b049cb4
   ],
   setlist: [
     {

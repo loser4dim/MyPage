@@ -13,7 +13,8 @@ export const event: EventDetail = {
     end  : "20:00"
   },
   place: {
-    name    : "阿佐ヶ谷DRIFT",
+    name: "阿佐ヶ谷DRIFT",
+    url : "https://x.com/AsagayaDrift"
   },
   flyer: {
     width : 1414,
@@ -35,6 +36,9 @@ export const event: EventDetail = {
           url : "https://x.com/_kiyo_san"
         },
         {
+          name: "loser4dim"
+        },
+        {
           name: "Munks",
           url : "https://x.com/Munks_nector"
         },
@@ -54,9 +58,6 @@ export const event: EventDetail = {
         {
           name: "ぐりもあ/Gr1m01re",
           url : "https://linktr.ee/arkanagrimoire"
-        },
-        {
-          name: "loser4dim"
         }
       ]
     },
@@ -80,7 +81,7 @@ export const event: EventDetail = {
       url: "https://x.com/ITOLU_BEE/status/1985638029470671173"
     }
   ],
-  hashtags: ["vvd_club ", "VRChat"],
+  hashtags: ["vvd_club"],
   timetable: {
     width : 1414,
     height: 2000,

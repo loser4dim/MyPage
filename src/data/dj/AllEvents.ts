@@ -4,8 +4,10 @@ import { event as djV1 } from "@/data/dj/details/2022/Virtual1";
 import { event as djV220 } from "@/data/dj/details/2026/Virtual220";
 import { event as djV221 } from "@/data/dj/details/2026/Virtual221";
 import { event as djV222 } from "@/data/dj/details/2026/Virtual222";
+import { event as djV223 } from "@/data/dj/details/2026/Virtual223";
 import { event as djR19 } from "@/data/dj/details/2025/Real19";
 import { event as djR20 } from "@/data/dj/details/2026/Real20";
+import { event as djR21 } from "@/data/dj/details/2026/Real21";
 import { EventDetail } from "@/types/EventDetail";
 
 //import { event as djV2 } from "@/data/dj/details/2022/DJVitrual2";
@@ -18,8 +20,11 @@ export const allPlayEvents: Record<string, EventDetail> = {
   "m4tt-and-friends-1": djV220,
   "initium-1"         : djV221,
   "club-silhouette-23": djV222,
-  "magnum-tornado-1"  : djR19,
-  "technoverse-1"     : djR20,
+  "the-4th-anniv"     : djV223,
+
+  "magnum-tornado-1"    : djR19,
+  "technoverse-1"       : djR20,
+  "dj-unknown-4th-anniv": djR21,
 };
 
 

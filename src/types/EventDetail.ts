@@ -4,44 +4,44 @@ export type Person = {
 };
 
 export type EventDetail = {
-  slug: string;
+  slug : string;
   title: string;
 
   date: {
-    year: number;
+    year : number;
     month: number;
-    day: number;
+    day  : number;
   };
 
   time: {
     start: string;
-    end: string;
+    end  : string;
   };
 
   place: {
-    name?: string;
-    url?: string;
+    name?    : string;
+    url?     : string;
     platform?: {
-      name?: string;
+      name?    : string;
       instance?: string;
     };
   };
 
   flyer?: {
-    width: number;
+    width : number;
     height: number;
-    image: string;
+    image : string;
   };
 
   organizers: Person[];
 
   group?: {
     name: string;
-    url: string;
+    url : string;
   };
 
   support?: {
-    role: string;
+    role      : string;
     performers: Person[];
   }[];
 

@@ -96,7 +96,9 @@ export default function WavePlayer({ src, markers}: Props) {
     });
 
     // これが実ロード
-    ws.load(src);
+    setTimeout(() => {
+      ws.load(src);
+    }, 0);
 
     const ro = new ResizeObserver(() => {
       // v7 だと redraw() が安定。無ければ seekTo(…)で再描画誘発でもOK
@@ -129,7 +131,7 @@ export default function WavePlayer({ src, markers}: Props) {
   return (
     <div
       className="relative rounded-xl border border-neutral-600 bg-neutral-800 p-3"
-      onContextMenu={(e) => e.preventDefault()} // “簡単に”DLさせない（完全防止ではない）
+      onContextMenu={(e) => e.preventDefault()}
     >
       <audio
         ref={audioRef}
@@ -139,79 +141,78 @@ export default function WavePlayer({ src, markers}: Props) {
         controlsList="nodownload noplaybackrate"
       />
 
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={toggle}
-          disabled={!ready}
-          className="h-9 w-24 rounded-lg border border-neutral-600 bg-neutral-900 text-sm disabled:opacity-50"
-        >
-          {ready ? (playing ? "Pause" : "Play") : "Loading..."}
-        </button>
-
-        <div className="flex-1">
-          <div className="relative">
-            <div
-              ref={containerRef}
-              className="relative h-[80px] w-full overflow-hidden rounded-lg bg-neutral-700 z-0"
-            />
-
-            {/* 区切り線（波形の上に重ねる） */}
-            {ready && dur > 0 && waveW > 0 && markers?.map((m, i) => {
-              const r = m.time / dur;
-              if (!Number.isFinite(r) || r < 0 || r > 1) return null;
-
-              const leftPx = (BAR_W / 2) + r * (waveW - BAR_W);
-
-              return (
-                <div
-                  key={i}
-                  className="pointer-events-none absolute top-0 h-full z-20"
-                  style={{ left: `${leftPx}px` }}
-                >
-                  <div className="h-full w-[2px] bg-highlight shadow-[0_0_10px_rgba(0,0,0,0)]" />
-                  {m.label && (
-                    <div
-                      className="
-                        absolute -top-2 left-0
-                        -translate-x-1/2 -translate-y-full
-                        whitespace-nowrap
-                        rounded-full
-                        border border-highlight/40
-                        bg-neutral-950/85
-                        px-2 py-[2px]
-                        text-[8px] font-medium
-                        text-neutral-100
-                        shadow-[0_2px_12px_rgba(0,0,0,0.55)]
-                        backdrop-blur
-                      "
-                    >
-                      {m.label}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          <input
-            className="mt-2 w-full"
-            type="range"
-            min={0}
-            max={1}
-            step={0.001}
-            value={posRatio}
-            onChange={(e) => seek(Number(e.target.value))}
-            disabled={!ready}
+      <div className="space-y-3">
+        <div className="relative">
+          <div
+            ref={containerRef}
+            className="relative h-[80px] w-full overflow-hidden rounded-lg bg-neutral-700 z-0"
           />
+
+          {ready && dur > 0 && waveW > 0 && markers?.map((m, i) => {
+            const r = m.time / dur;
+            if (!Number.isFinite(r) || r < 0 || r > 1) return null;
+
+            const leftPx = (BAR_W / 2) + r * (waveW - BAR_W);
+
+            return (
+              <div
+                key={i}
+                className="pointer-events-none absolute top-0 h-full z-20"
+                style={{ left: `${leftPx}px` }}
+              >
+                <div className="h-full w-[2px] bg-highlight shadow-[0_0_10px_rgba(0,0,0,0)]" />
+                {m.label && (
+                  <div
+                    className="
+                      absolute -top-2 left-0
+                      -translate-x-1/2 -translate-y-full
+                      whitespace-nowrap
+                      rounded-full
+                      border border-highlight/40
+                      bg-neutral-950/85
+                      px-2 py-[2px]
+                      text-[8px] font-medium
+                      text-neutral-100
+                      shadow-[0_2px_12px_rgba(0,0,0,0.55)]
+                      backdrop-blur
+                    "
+                  >
+                    {m.label}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
+        <input
+          className="w-full"
+          type="range"
+          min={0}
+          max={1}
+          step={0.001}
+          value={posRatio}
+          onChange={(e) => seek(Number(e.target.value))}
+          disabled={!ready}
+        />
 
-        <div className="w-24 text-right text-xs text-neutral-300">
-          <div>{formatTime(pos)}</div>
-          <div className="text-neutral-400">{formatTime(dur)}</div>
+        <div className="flex items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={toggle}
+            disabled={!ready}
+            className="h-9 w-24 rounded-lg border border-neutral-600 bg-neutral-900 text-sm disabled:opacity-50"
+          >
+            {ready ? (playing ? "Pause" : "Play") : "Loading..."}
+          </button>
+
+          <div className="text-right text-xs text-neutral-300">
+            <div>{formatTime(pos)}</div>
+            <div className="text-neutral-400">{formatTime(dur)}</div>
+          </div>
         </div>
       </div>
+
 
       {err && (
         <div className="mt-2 text-xs text-red-300">

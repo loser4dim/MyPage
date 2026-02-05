@@ -121,14 +121,12 @@ export default function WavePlayer({ src }: Props) {
       className="relative rounded-xl border border-neutral-600 bg-neutral-800 p-3"
       onContextMenu={(e) => e.preventDefault()} // “簡単に”DLさせない（完全防止ではない）
     >
-      {/* 見えない audio（controls を出さない） */}
       <audio
         ref={audioRef}
         preload="metadata"
         crossOrigin="anonymous"
         controls={false}
         controlsList="nodownload noplaybackrate"
-        disablePictureInPicture
       />
 
       <div className="flex items-center gap-3">

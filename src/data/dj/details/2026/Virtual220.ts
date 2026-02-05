@@ -81,42 +81,44 @@ export const event: EventDetail = {
     }
   ],
   hashtags: ["M4ttFriends9", "VRChat"],
-  timeSlot: {
-    start   : "21:00",
-    end     : "26:00",
-    performs: [
-      {
-        start: "21:00",
-        end  : "21:50",
-        dj   : ["um"],
-        vj   : ["osirasekita"]
-      },
-      {
-        start: "22:00",
-        end  : "22:50",
-        dj   : ["loser4dim"],
-        vj   : ["Ende"]
-      },
-      {
-        start: "23:00",
-        end  : "23:50",
-        dj   : ["q330"],
-        vj   : ["osirasekita"]
-      },
-      {
-        start: "24:00",
-        end  : "24:40",
-        dj   : ["Aipo"],
-        vj   : ["Ende"]
-      },
-      {
-        start: "24:50",
-        end  : "25:40",
-        dj   : ["M4tt"],
-        vj   : ["osirasekita"]
-      }
-    ]
-  },
+  timeSlot: [
+    {
+      start   : "21:00",
+      end     : "26:00",
+      performs: [
+        {
+          start: "21:00",
+          end  : "21:50",
+          dj   : ["um"],
+          vj   : ["osirasekita"]
+        },
+        {
+          start: "22:00",
+          end  : "22:50",
+          dj   : ["loser4dim"],
+          vj   : ["Ende"]
+        },
+        {
+          start: "23:00",
+          end  : "23:50",
+          dj   : ["q330"],
+          vj   : ["osirasekita"]
+        },
+        {
+          start: "24:00",
+          end  : "24:40",
+          dj   : ["Aipo"],
+          vj   : ["Ende"]
+        },
+        {
+          start: "24:50",
+          end  : "25:40",
+          dj   : ["M4tt"],
+          vj   : ["osirasekita"]
+        }
+      ]
+    }
+  ],
   setlist: [
     {
       index : 0,

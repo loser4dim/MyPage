@@ -26,27 +26,29 @@ export const event: EventDetail = {
     height: 720,
     image : "/dj/2022/djV00.avif"
   },
-  timeSlot: {
-    start   : "13:00",
-    end     : "16:00",
-    performs: [
-      {
-        start: "13:00",
-        end  : "14:00",
-        dj   : ["loser4dim"]
-      },
-      {
-        start: "14:00",
-        end  : "15:00",
-        dj   : ["あんにん"]
-      },
-      {
-        start: "15:00",
-        end  : "16:00",
-        dj   : ["DJ\"MAꓘKURO\""]
-      }
-    ]
-  },
+  timeSlot: [
+    {
+      start   : "13:00",
+      end     : "16:00",
+      performs: [
+        {
+          start: "13:00",
+          end  : "14:00",
+          dj   : ["loser4dim"]
+        },
+        {
+          start: "14:00",
+          end  : "15:00",
+          dj   : ["あんにん"]
+        },
+        {
+          start: "15:00",
+          end  : "16:00",
+          dj   : ["DJ\"MAꓘKURO\""]
+        }
+      ]
+    }
+  ],
   organizers: [
     {
       name: "スパイラルポテトあきぺ",

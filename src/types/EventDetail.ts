@@ -67,7 +67,7 @@ export type EventDetail = {
       dj   : string[];
       vj?  : string[];
     }[]
-  };
+  }[];
 
   mixArchives?: {
     type    : "mixcloud" | "youtube" | "twitch" | "cloudflare";

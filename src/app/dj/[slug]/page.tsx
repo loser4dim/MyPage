@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import WavePlayer from "@/components/dj/WavePlayer";
 import TransitionLink from "@/components/transition/TransitionLink";
-import TweetList from "@/components/twitter/TweetList"
+import TweetList from "@/components/twitter/TweetList";
 import { allPlayEvents } from "@/data/dj/AllEvents";
 
 export const dynamic = "force-static";
@@ -25,6 +25,18 @@ function timeDiffToHeight(start: string, end: string): number {
   return (timeToMinutes(end) - timeToMinutes(start)) * 2;
 }
 
+function hasValidRangeTime(
+  slot: Partial<{ start: string; end: string }>,
+): slot is { start: string; end: string } {
+  return Boolean(slot.start && slot.end);
+}
+
+function minutesToTime(minutes: number): string {
+  const h = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return `${h}:${mm}`;
+}
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = await Promise.resolve(params);
   const event = allPlayEvents[slug as keyof typeof allPlayEvents];
@@ -32,31 +44,49 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  let hourSteps: string[] = [];
-  if (event.timeSlot) {
-    const start = event.timeSlot.start;
-    const end = event.timeSlot.end;
-    const startMin = timeToMinutes(start);
-    const endMin = timeToMinutes(end);
-    const count = (endMin - startMin) / 60 + 1;
+  const timeSlots = event.timeSlot ?? [];
+  const timelineStartMinutes =
+    timeSlots.length > 0
+      ? Math.min(...timeSlots.map((slot) => timeToMinutes(slot.start)))
+      : 0;
+  const timelineEndMinutes =
+    timeSlots.length > 0
+      ? Math.max(...timeSlots.map((slot) => timeToMinutes(slot.end)))
+      : 0;
+  const hourSteps =
+    timeSlots.length > 0
+      ? Array.from(
+          {
+            length:
+              Math.floor((timelineEndMinutes - timelineStartMinutes) / 60) + 1,
+          },
+          (_, i) => minutesToTime(timelineStartMinutes + i * 60),
+        )
+      : [];
 
-    hourSteps = Array.from({ length: count }, (_, i) => {
-      const m = startMin + i * 60;
-      const h = String(Math.floor(m / 60)).padStart(2, "0");
-      const mm = String(m % 60).padStart(2, "0");
-      return `${h}:${mm}`;
-    });
-  }
+  const timetableColumnCount = Math.min(Math.max(timeSlots.length, 1), 3);
+  const timetableGridColumnsClass =
+    timetableColumnCount === 1
+      ? "md:grid-cols-1"
+      : timetableColumnCount === 2
+        ? "md:grid-cols-2"
+        : "md:grid-cols-3";
+  const timetableMaxWidthClass =
+    timetableColumnCount === 1
+      ? "md:max-w-2xl"
+      : timetableColumnCount === 2
+        ? "md:max-w-5xl"
+        : "md:max-w-7xl";
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-10">
+    <div className="mx-auto max-w-7xl space-y-10 p-6">
       <div>
         <h1 className="text-3xl font-bold mb-1">
           {event.title}
         </h1>
         <p className="text-sm">
-          {`${event.date.year}年${event.date.month}月${event.date.day}日`}
-          {" "} {`${event.time.start} - ${event.time.end}`}
+          {`${event.date.year}年${event.date.month}月${event.date.day}日`}{" "}
+          {`${event.time.start} - ${event.time.end}`}
           {event.place.name && (
             <>
               {" / "}
@@ -237,99 +267,90 @@ export default async function Page({ params }: { params: { slug: string } }) {
         
 
       <div>
-        {
-          (event.timetable || event.timeSlot) && (
-            <h2 className="text-xl text-center mb-2">
-              Timetable
-            </h2>
-          )
-        }
-        {
-          event.timetable ? (
-            <div className="flex justify-center">
-              <Image
-                src={event.timetable.image}
-                alt="timetable"
-                width={event.timetable.width}
-                height={event.timetable.height}
-                className="rounded object-contain h-auto max-w-full md:max-w-2/3"
-              />
-            </div>
-          ) : (
-            event.timeSlot && (() => {
-              const { start, end, performs } = event.timeSlot;
-
-              return (
-              <div
-                className="relative mt-2"
-                style={{
-                  height: timeDiffToHeight(start, end) + 40,
-                }}
-              >
-                {
-                  hourSteps.map(
-                    (time, i) => (
-                      <div key={i} className="relative" style={{ height: 120 }}>
-                        <div
-                          className="absolute top-0 left-0 w-[64px] text-right pr-2 text-sm"
-                          style={{
-                            lineHeight: "1",
-                            transform : "translateY(-0.45em)",
-                          }}
-                        >
-                          {time}
-                        </div>
-
-                      <div
-                        className="absolute top-0 border-t border-highlight border-dashed"
-                        style={{
-                          left : "72px",
-                          right: "72px"
-                        }}
-                      />
-                      </div>
-                    )
-                  )
-                }
-                <div
-                  className="absolute top-0 left-[96px] right-[96px] px-2 sm:px-4 md:px-6"
-                >
-                  {
-                    performs.map(
-                      (slot, i) => (
+        {(event.timetable || event.timeSlot) && (
+          <h2 className="mb-2 text-center text-xl">Timetable</h2>
+        )}
+        {event.timetable ? (
+          <div className="flex justify-center">
+            <Image
+              src={event.timetable.image}
+              alt="timetable"
+              width={event.timetable.width}
+              height={event.timetable.height}
+              className="h-auto max-w-full rounded object-contain md:max-w-2/3"
+            />
+          </div>
+        ) : (
+          timeSlots.length > 0 && (
+            <div
+              className="relative mt-2"
+              style={{
+                height:
+                  timelineEndMinutes - timelineStartMinutes > 0
+                    ? timeDiffToHeight(
+                        minutesToTime(timelineStartMinutes),
+                        minutesToTime(timelineEndMinutes),
+                      ) + 40
+                    : 0,
+              }}
+            >
+              {hourSteps.map((time, i) => (
+                <div key={i} className="relative" style={{ height: 120 }}>
+                  <div
+                    className="absolute top-0 left-0 w-[64px] pr-2 text-right text-sm"
+                    style={{
+                      lineHeight: "1",
+                      transform: "translateY(-0.45em)",
+                    }}
+                  >
+                    {time}
+                  </div>
+                  <div
+                    className="border-highlight absolute top-0 border-t border-dashed"
+                    style={{
+                      left: "72px",
+                      right: "72px",
+                    }}
+                  />
+                </div>
+              ))}
+              <div className={`mx-auto grid w-full gap-2 ${timetableGridColumnsClass} ${timetableMaxWidthClass}`}>
+                {timeSlots.map((timeSlot, columnIndex) => (
+                  <div key={columnIndex} className="relative">
+                    {timeSlot.performs
+                      .filter(hasValidRangeTime)
+                      .map((slot, i) => (
                         <div
                           key={i}
-                          className="absolute bg-neutral-600 rounded-md px-4 mx-auto"
+                          className="absolute left-0 w-full rounded-md bg-neutral-600 px-4"
                           style={{
-                            top: timeToPosition(slot.start, start)+5,
-                            height: timeDiffToHeight(slot.start, slot.end)-10,
-                            left: "0",
-                            right: "0",
-                            maxWidth: "640px"
+                            top:
+                              timeToPosition(
+                                slot.start,
+                                minutesToTime(timelineStartMinutes),
+                              ) + 5,
+                            height: timeDiffToHeight(slot.start, slot.end) - 10,
                           }}
                         >
-                          <div className="flex items-center justify-center h-full text-center text-neutral-200 px-2 py-1">
+                        <div className="flex h-full items-center justify-center px-2 py-1 text-center text-neutral-200">
                             {slot.start} – {slot.end}
                             <br />
-                              {slot.dj.join(" × ")}
-                            {
-                              slot.vj && (slot.vj.length > 0) && (
-                                <>
-                                  {" / "}
-                                    {slot.vj.join(" × ")}
-                                </>
-                              )
-                            }
+                            {slot.dj.join(" × ")}
+                            {slot.vj && slot.vj.length > 0 && (
+                              <>
+                                {" / "}
+                                {slot.vj.join(" × ")}
+                              </>
+                            )}
                           </div>
                         </div>
-                      )
-                    )
-                  }
-                </div>
+                        ))}
+                  </div>
+                ))}
               </div>
-            );
-  })())
-        }
+              </div>
+          )
+        )}
       </div>
 
       {

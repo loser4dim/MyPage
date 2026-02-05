@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "lint": "next lint --fix",
+    "lint": "next lint",
     "build": "next build"
   },
   "dependencies": {
@@ -13,10 +13,10 @@
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.1",
-    "framer-motion": "^12.29.0",
-    "next": "16.1.4",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "framer-motion": "^12.31.1",
+    "next": "16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "wavesurfer.js": "^7.12.1"
   },
   "devDependencies": {
@@ -24,14 +24,14 @@
     "@fontsource/biz-udpgothic": "^5.2.9",
     "@fontsource/open-sans": "^5.2.7",
     "@tailwindcss/postcss": "^4.1.18",
-    "@types/node": "^25.0.10",
-    "@types/react": "^19.2.9",
+    "@types/node": "^25.2.0",
+    "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.4.23",
+    "autoprefixer": "^10.4.24",
     "eslint": "^9.39.2",
-    "eslint-config-next": "16.1.4",
+    "eslint-config-next": "16.1.6",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-perfectionist": "^5.4.0",
+    "eslint-plugin-perfectionist": "^5.5.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-security": "^3.0.1",

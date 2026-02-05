@@ -287,7 +287,7 @@ export const event: EventDetail = {
       url: "https://mdb.tower.jp/release/11061178/KITTY-TRANCE",
     },
     {
-      index: 28,
+      index: 99,
       artist: "ユニティちゃん",
       track: "ありがとうございましたー！",
       url: "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack",

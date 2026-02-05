@@ -10,7 +10,7 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "12",
             title: "DJガチ初心者練習会",
-            slug : "practice" // virtual-00
+            slug : "practice"
           }
         ]
       },
@@ -20,22 +20,22 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "あきぺ&とかげ誕生前夜祭",
-            slug : "akipe-tokage-birthday-1" // virtual-01
+            slug : "akipe-tokage-birthday-1"
           },
           {
             day  : "3",
             title: "DJなんもわからん EP.7",
-            slug : "dj-unknown-1" // virtual-1
+            slug : "dj-unknown-1"
           },
           {
             day  : "13",
             title: "Club&Bar羽ばたき",
-            slug : "club-and-bar-habataki-1" // virtual-2
+            slug : "club-and-bar-habataki-1"
           },
           {
             day  : "18",
             title: "Rookies Sound Festa",
-            slug : "rookies-sound-festa-1" // virtual-3
+            slug : "rookies-sound-festa-1"
           }
         ]
       },
@@ -45,22 +45,22 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "GZ 10th",
-            slug : "gz-1" // virtual-4
+            slug : "gz-1"
           },
           {
             day  : "8",
             title: "m1chie Birthday",
-            slug : "m1chie-birthday-1" // virtual-5
+            slug : "m1chie-birthday-1"
           },
           {
             day  : "17",
             title: "Sunday Live Party",
-            slug : "sundday-live-party-1" // virtual-6
+            slug : "sundday-live-party-1"
           },
           {
             day  : "26",
             title: "Quest Danceparty Club No.62",
-            slug : "" // virtual-7
+            slug : ""
           }
         ]
       },
@@ -70,22 +70,22 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "9",
             title: "MONDAY RELIEF 104th",
-            slug : "" // virtual-8
+            slug : ""
           },
           {
             day  : "15",
             title: "JUKe FfAI(r)Y",
-            slug : "" // virtual-9
+            slug : ""
           },
           {
             day  : "20",
             title: "BreakTheSleeplessNight PoC.1",
-            slug : "" // virtual-10
+            slug : ""
           },
           {
             day  : "27",
             title: "BUG COLLECTIVE",
-            slug : "" // virtual-11
+            slug : ""
           }
         ]
       },
@@ -95,52 +95,52 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "VRC電音研",
-            slug : "" // virtual-12
+            slug : ""
           },
           {
             day  : "9",
             title: "DJなんもわからん EP.18",
-            slug : "" // virtual-13
+            slug : ""
           },
           {
             day  : "16",
             title: "翔-KAKERU- Vol.20",
-            slug : "" // virtual-14
+            slug : ""
           },
           {
             day  : "17",
             title: "VJしたいっ Vol.4",
-            slug : "" // virtual-15
+            slug : ""
           },
           {
             day  : "18",
             title: "PNGミュージアム エンディング・ナイト",
-            slug : "" // virtual-16
+            slug : ""
           },
           {
             day  : "18",
             title: "Live House \"Novice\" 第61回",
-            slug : "" // virtual-17
+            slug : ""
           },
           {
             day  : "22",
             title: "VRC電音研",
-            slug : "" // virtual-18
+            slug : ""
           },
           {
             day  : "24",
             title: "Club Plane 2",
-            slug : "" // virtual-19
+            slug : ""
           },
           {
             day  : "25",
             title: "Under Sea Music Event",
-            slug : "" // virtual-20
+            slug : ""
           },
           {
             day  : "30",
             title: "méllon's afterlives #096",
-            slug : "" // virtual-21
+            slug : "mellons-afterlives-1"
           }
         ]
       },
@@ -150,17 +150,17 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "9",
             title: "ELECTRO NURSERY SCHOOL-エレクトロ保育園- Vol.2",
-            slug : "" // virtual-22
+            slug : ""
           },
           {
             day  : "13",
             title: "VRC電音研",
-            slug : "" // virtual-23
+            slug : ""
           },
           {
             day  : "22",
             title: "BUG COLLECTIVE",
-            slug : "" // virtual-24
+            slug : ""
           }
         ]
       },
@@ -170,32 +170,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "2",
             title: "雑ボカ。第3回",
-            slug : "" // virtual-25
+            slug : ""
           },
           {
             day  : "4",
             title: "Interstellar HOUSE Night",
-            slug : "" // virtual-26
+            slug : ""
           },
           {
             day  : "17",
             title: "VRC電音研",
-            slug : "" // virtual-27
+            slug : ""
           },
           {
             day  : "18",
             title: "méllon's afterlives #103",
-            slug : "" // virtual-28
+            slug : "mellons-afterlives-2"
           },
           {
             day  : "22",
             title: "MONDAY RELIEF 119th",
-            slug : "" // virtual-29
+            slug : ""
           },
           {
             day  : "27",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-30
+            slug : ""
           }
         ]
       },
@@ -205,47 +205,47 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "2",
             title: "ミュージックスクランブル -AROMERICANDINERせんりょう作戦-",
-            slug : "" // virtual-31
+            slug : ""
           },
           {
             day  : "3",
             title: "Live House \"Novice\" 第71回",
-            slug : "" // virtual-32
+            slug : ""
           },
           {
             day  : "14",
             title: "VRC電音研",
-            slug : "" // virtual-33
+            slug : ""
           },
           {
             day  : "15",
             title: "DJなんもわからん EP.32",
-            slug : "" // virtual-34
+            slug : ""
           },
           {
             day  : "16",
             title: "VJしたいっ Vol.7",
-            slug : "" // virtual-35
+            slug : ""
           },
           {
             day  : "17",
             title: "Bar羽休め HOUSE会 第8回",
-            slug : "" // virtual-36
+            slug : ""
           },
           {
             day  : "22",
             title: "méllon's afterlives #107",
-            slug : "" // virtual-37
+            slug : "mellons-afterlives-3"
           },
           {
             day  : "23",
             title: "Bar曲宴",
-            slug : "" // virtual-38
+            slug : ""
           },
           {
             day  : "24",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-39
+            slug : ""
           }
         ]
       },
@@ -255,32 +255,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "2",
             title: "Club&Bar羽ばたき Techno Night",
-            slug : "" // virtual-40
+            slug : ""
           },
           {
             day  : "15",
             title: "KYUUB",
-            slug : "" // virtual-41
+            slug : ""
           },
           {
             day  : "21",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-42
+            slug : ""
           },
           {
             day  : "27",
             title: "méllon's afterlives #112",
-            slug : "" // virtual-43
+            slug : "mellons-afterlives-4"
           },
           {
             day  : "29",
             title: "VRC電音研リアル課外活動",
-            slug : "" // real-1
+            slug : ""
           },
           {
             day  : "30",
             title: "Sweets Party in Sweet Dish! Vol.2 HALLOWEEN PARTY",
-            slug : "" // virtual-44
+            slug : ""
           }
         ]
       },
@@ -290,12 +290,12 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "5",
             title: "TYLE",
-            slug : "" // virtual-45
+            slug : ""
           },
           {
             day  : "24",
             title: "第22回広義民族音楽イベント Mysnic Music of the World",
-            slug : "" // virtual-46
+            slug : ""
           }
         ]
       },
@@ -305,42 +305,42 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "méllon's afterlives #117",
-            slug : "" // virtual-47
+            slug : "mellons-afterlives-5"
           },
           {
             day  : "7",
             title: "Re:FLaT",
-            slug : "" // real-2
+            slug : ""
           },
           {
             day  : "8",
             title: "DJなんもわからん EP.43",
-            slug : "" // virtual-48
+            slug : ""
           },
           {
             day  : "10",
             title: "GaMe語り",
-            slug : "" // real-3
+            slug : ""
           },
           {
             day  : "11",
             title: "面喰",
-            slug : "" // virtual-49
+            slug : ""
           },
           {
             day  : "21",
             title: "VRC電音研",
-            slug : "" // virtual-50
+            slug : ""
           },
           {
             day  : "23",
             title: "空の鯨",
-            slug : "" // virtual-51
+            slug : ""
           },
           {
             day  : "24",
             title: "KYUUB",
-            slug : "" // virtual-52
+            slug : ""
           }
         ]
       }
@@ -355,17 +355,17 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "8",
             title: "MUSICBARSSC",
-            slug : "" // virtual-53
+            slug : ""
           },
           {
             day  : "20",
             title: "VJしたいっ vol.11",
-            slug : "" // virtual-54
+            slug : ""
           },
           {
             day  : "30",
             title: "MONDAY RELIEF 142nd",
-            slug : "" // virtual-55
+            slug : ""
           }
         ]
       },
@@ -375,32 +375,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "VRC電音研",
-            slug : "" // virtual-56
+            slug : ""
           },
           {
             day  : "16",
             title: "méllon's afterlives #127",
-            slug : "" // virtual-57
+            slug : "mellons-afterlives-6"
           },
           {
             day  : "17",
             title: "130BPM±8% 25.7 WINTER WEEKEND 2nd Day.7",
-            slug : "" // virtual-58
+            slug : ""
           },
           {
             day  : "21",
             title: "Unstable Hologram",
-            slug : "" // virtual-59
+            slug : ""
           },
           {
             day  : "25",
             title: "Live House \"Novice\" 第95回",
-            slug : "" // virtual-60
+            slug : ""
           },
           {
             day  : "26",
             title: "メディテラVR リアルインスタンス",
-            slug : "" // real-4
+            slug : ""
           }
         ]
       },
@@ -410,42 +410,42 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "あきぺとかげ誕生（前夜）祭",
-            slug : "" // virtual-61
+            slug : ""
           },
           {
             day  : "3",
             title: "第十一回 創奏音楽祭 Day 1",
-            slug : "" // stream-1
+            slug : ""
           },
           {
             day  : "3",
             title: "電フェス2023",
-            slug : "" // virtual-62
+            slug : ""
           },
           {
             day  : "8",
             title: "VRC電音研",
-            slug : "" // virtual-63
+            slug : ""
           },
           {
             day  : "14",
             title: "BUG COLLECTIVE",
-            slug : "" // virtual-64
+            slug : ""
           },
           {
             day  : "22",
             title: "第27回広義民族音楽オンリーイベント Mysnic Music of the World",
-            slug : "" // virtual-65
+            slug : ""
           },
           {
             day  : "29",
             title: "Feel Free A-Remix vol.3",
-            slug : "" // virtual-66
+            slug : ""
           },
           {
             day  : "30",
             title: "第38回 黒孔雀",
-            slug : "" // virtual-67
+            slug : ""
           }
         ]
       },
@@ -455,27 +455,27 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "5",
             title: "VRC電音研",
-            slug : "" // virtual-68
+            slug : ""
           },
           {
             day  : "6",
             title: "méllon's afterlives #134",
-            slug : "" // virtual-69
+            slug : "mellons-afterlives-7"
           },
           {
             day  : "7",
             title: "VJしたいっ vol.14",
-            slug : "" // virtual-70
+            slug : ""
           },
           {
             day  : "8",
             title: "m1chie Birthday",
-            slug : "" // virtual-71
+            slug : ""
           },
           {
             day  : "27",
             title: "DJなんもわからん EP.63",
-            slug : "" // virtual-72
+            slug : ""
           }
         ]
       },
@@ -485,12 +485,12 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "18",
             title: "méllon's afterlives #140",
-            slug : "" // virtual-73
+            slug : "mellons-afterlives-8"
           },
           {
             day  : "29",
             title: "MONDAY RELIEF 159th",
-            slug : "" // virtual-74
+            slug : ""
           }
         ]
       },
@@ -500,27 +500,27 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "2",
             title: "VJしたいっ vol.18",
-            slug : "" // virtual-75
+            slug : ""
           },
           {
             day  : "7",
             title: "終末旅行がはじまるぞ 7",
-            slug : "" // virtual-76
+            slug : ""
           },
           {
             day  : "9",
             title: "Schirmer Home Party 2nd Anniversary at RIPPLE",
-            slug : "" // virtual-77
+            slug : ""
           },
           {
             day  : "11",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-78
+            slug : ""
           },
           {
             day  : "18",
             title: "メジャーポッターとjustの部屋",
-            slug : "" // virtual-79
+            slug : ""
           }
         ]
       },
@@ -530,32 +530,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "5",
             title: "VRC電音研",
-            slug : "" // virtual-80
+            slug : ""
           },
           {
             day  : "13",
             title: "MUNI vol.3",
-            slug : "" // virtual-81
+            slug : ""
           },
           {
             day  : "14",
             title: "BUG COLLECTIVE",
-            slug : "" // virtual-82
+            slug : ""
           },
           {
             day  : "27",
             title: "méllon's afterlive #150",
-            slug : "" // virtual-83
+            slug : "mellons-afterlives-9"
           },
           {
             day  : "29",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-84
+            slug : ""
           },
           {
             day  : "31",
             title: "THE OUTSIDE 2nd Anniversary Rave Day 1",
-            slug : "" // virtual-85
+            slug : ""
           }
         ]
       },
@@ -565,57 +565,57 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "2",
             title: "Club&Bar羽ばたき",
-            slug : "" // virtual-86
+            slug : ""
           },
           {
             day  : "3",
             title: "DJなんもわからん EP.77",
-            slug : "" // virtual-87
+            slug : ""
           },
           {
             day  : "7",
             title: "MONDAY RELIEF 169th",
-            slug : "" // virtual-88
+            slug : ""
           },
           {
             day  : "15",
             title: "カゲプロ・ボカロ改変交流会",
-            slug : "" // virtual-89
+            slug : ""
           },
           {
             day  : "18",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-90
+            slug : ""
           },
           {
             day  : "19",
             title: "FOOTWORKIN IN VRC",
-            slug : "" // virtual-91
+            slug : ""
           },
           {
             day  : "20",
             title: "沈淪 vol.4",
-            slug : "" // virtual-92
+            slug : ""
           },
           {
             day  : "24",
             title: "méllon's afterlives #154",
-            slug : "" // virtual-93
+            slug : "mellons-afterlives-10"
           },
           {
             day  : "27",
             title: "ElectroLiVR vol.28",
-            slug : "" // stream-2
+            slug : ""
           },
           {
             day  : "27",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-94
+            slug : ""
           },
           {
             day  : "30",
             title: "VRC電音研",
-            slug : "" // virtual-95
+            slug : ""
           }
         ]
       },
@@ -625,47 +625,47 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "2",
             title: "第十三回 創奏音楽祭 Day 2",
-            slug : "" // stream-3
+            slug : ""
           },
           {
             day  : "13",
             title: "Chill Moon",
-            slug : "" // virtual-96
+            slug : ""
           },
           {
             day  : "14",
             title: "第52回 黒孔雀",
-            slug : "" // virtual-97
+            slug : ""
           },
           {
             day  : "15",
             title: "VJしたいっ vol.24",
-            slug : "" // virtual-98
+            slug : ""
           },
           {
             day  : "20",
             title: "BUG COLLECTIVE",
-            slug : "" // virtual-99
+            slug : ""
           },
           {
             day  : "21",
             title: "VOCALOID×SCRAMBLE vol.18",
-            slug : "" // real-5
+            slug : ""
           },
           {
             day  : "23",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-100
+            slug : ""
           },
           {
             day  : "27",
             title: "第33回広義民族音楽オンリーイベント Mysnic Music of the World",
-            slug : "" // virtual-101
+            slug : ""
           },
           {
             day  : "29",
             title: "XIMER-A vol.07",
-            slug : "" // virtual-102
+            slug : ""
           }
         ]
       },
@@ -675,42 +675,42 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "5",
             title: "méllon's afterlives #160",
-            slug : "" // virtual-103
+            slug : "mellons-afterlives-11"
           },
           {
             day  : "7",
             title: "リアルテスト家ンザー",
-            slug : "" // real-6
+            slug : ""
           },
           {
             day  : "11",
             title: "VRC電音研",
-            slug : "" // virtual-104
+            slug : ""
           },
           {
             day  : "16",
             title: "MONDAY RELIEF 179th",
-            slug : "" // virtual-105
+            slug : ""
           },
           {
             day  : "22",
             title: "Rizumu Saturday",
-            slug : "" // virtual-106
+            slug : ""
           },
           {
             day  : "23",
             title: "MONDAY RELIEF 180th 拡大版",
-            slug : "" // virtual-107
+            slug : ""
           },
           {
             day  : "25",
             title: "OK,Garage",
-            slug : "" // virtual-108
+            slug : ""
           },
           {
             day  : "27",
             title: "VJしたいっ vol.29",
-            slug : "" // virtual-109
+            slug : ""
           }
         ]
       },
@@ -720,27 +720,27 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "3",
             title: "VJしたいっ vol.30",
-            slug : "" // virtual-110
+            slug : ""
           },
           {
             day  : "4",
             title: "深淵",
-            slug : "" // real-7
+            slug : ""
           },
           {
             day  : "9",
             title: "DJなんもわからん EP.91",
-            slug : "" // virtual-111
+            slug : ""
           },
           {
             day  : "16",
             title: "méllon's afterlives #166",
-            slug : "" // virtual-112
+            slug : "mellons-afterlives-12"
           },
           {
             day  : "19",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-113
+            slug : ""
           }
         ]
       },
@@ -750,22 +750,22 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "6",
             title: "Future Nova vol.18",
-            slug : "" // virtual-114
+            slug : ""
           },
           {
             day  : "14",
             title: "méllon's afterlives #170",
-            slug : "" // virtual-115
+            slug : "mellons-afterlives-13"
           },
           {
             day  : "17",
             title: "Sequence 16",
-            slug : "" // virtual-116
+            slug : ""
           },
           {
             day  : "28",
             title: "PEDRAM Mitinoku's Birthday Party",
-            slug : "" // real-8
+            slug : ""
           }
         ]
       }
@@ -780,27 +780,27 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "4",
             title: "Club&Bar羽ばたき",
-            slug : "" // virtual-117
+            slug : ""
           },
           {
             day  : "6",
             title: "The 2nd Anniversary Day 1",
-            slug : "" // virtual-118
+            slug : ""
           },
           {
             day  : "12",
             title: "VJしたいっ vol.36",
-            slug : "" // virtual-119
+            slug : ""
           },
           {
             day  : "26",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-120
+            slug : ""
           },
           {
             day  : "31",
             title: "VRC電音研",
-            slug : "" // virtual-121
+            slug : ""
           }
         ]
       },
@@ -810,17 +810,17 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "méllon's afterlives #176",
-            slug : "" // virtual-122
+            slug : "mellons-afterlives-14"
           },
           {
             day  : "5",
             title: "MONDAY RELIEF 195th",
-            slug : "" // virtual-123
+            slug : ""
           },
           {
             day  : "8",
             title: "DJなんもわからん EP.101",
-            slug : "" // virtual-124
+            slug : ""
           }
         ]
       },
@@ -830,12 +830,12 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "あきぺ&とかげ誕生祭",
-            slug : "" // virtual-125
+            slug : ""
           },
           {
             day  : "14",
             title: "méllon's afterlives #182",
-            slug : "" // virtual-126
+            slug : "mellons-afterlives-15"
           }
         ]
       },
@@ -845,32 +845,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "3",
             title: "VRC電音研",
-            slug : "" // virtual-127
+            slug : ""
           },
           {
             day  : "9",
             title: "SUSHI HOUSE",
-            slug : "" // virtual-128
+            slug : ""
           },
           {
             day  : "12",
             title: "ごっつええFuture in VRCHat Ver.35.0",
-            slug : "" // virtual-129
+            slug : ""
           },
           {
             day  : "20",
             title: "SUSHI HOUSE",
-            slug : "" // virtual-130
+            slug : ""
           },
           {
             day  : "20",
             title: "SENSE//SENCE",
-            slug : "" // virtual-131
+            slug : ""
           },
           {
             day  : "24",
             title: "Re:construction Episode.1",
-            slug : "" // virtual-132
+            slug : ""
           }
         ]
       },
@@ -880,27 +880,27 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "9",
             title: "DJなんもわからん EP.114",
-            slug : "" // virtual-133
+            slug : ""
           },
           {
             day  : "11",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-134
+            slug : ""
           },
           {
             day  : "16",
             title: "第71回 黒孔雀",
-            slug : "" // virtual-135
+            slug : ""
           },
           {
             day  : "19",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-136
+            slug : ""
           },
           {
             day  : "30",
             title: "méllon's afterlives #193",
-            slug : "" // virtual-137
+            slug : "mellons-afterlives-16"
           }
         ]
       },
@@ -910,12 +910,12 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "5",
             title: "VRC電音研",
-            slug : "" // virtual-138
+            slug : ""
           },
           {
             day  : "7",
             title: "JUKu FfAi(r)Y",
-            slug : "" // virtual-139
+            slug : ""
           }
         ]
       },
@@ -925,32 +925,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "4",
             title: "méllon's afterlives #198",
-            slug : "" // virtual-140
+            slug : "mellons-afterlives-17"
           },
           {
             day  : "5",
             title: "冷感楽曲DJイベント 羽休め納涼祭",
-            slug : "" // virtual-141
+            slug : ""
           },
           {
             day  : "18",
             title: "Tokage Music Box #10",
-            slug : "" // virtual-142
+            slug : ""
           },
           {
             day  : "21",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-143
+            slug : ""
           },
           {
             day  : "26",
             title: "FISHHEAD Party Vol.03 Day2",
-            slug : "" // virtual-144
+            slug : ""
           },
           {
             day  : "31",
             title: "VRC電音研",
-            slug : "" // virtual-145
+            slug : ""
           }
         ]
       },
@@ -960,32 +960,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "3",
             title: "顕現「抵抗」",
-            slug : "" // virtual-146
+            slug : ""
           },
           {
             day  : "7",
             title: "BUG COLLECTIVE Summer ver Part.1",
-            slug : "" // virtual-147
+            slug : ""
           },
           {
             day  : "8",
             title: "méllon's aftrelives #203",
-            slug : "" // virtual-148
+            slug : "mellons-afterlives-18"
           },
           {
             day  : "15",
             title: "BUG COLLECTIVE Summner ver Part.2",
-            slug : "" // virtual-149
+            slug : ""
           },
           {
             day  : "16",
             title: "第十六回 創奏音楽祭",
-            slug : "" // stream-4
+            slug : ""
           },
           {
             day  : "29",
             title: "CUERaider Vol.136 そわそわVRChat",
-            slug : "" // stream-5
+            slug : ""
           }
         ]
       },
@@ -995,32 +995,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "5",
             title: "第79回 黒孔雀",
-            slug : "" // virtual-150
+            slug : ""
           },
           {
             day  : "7",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-151
+            slug : ""
           },
           {
             day  : "15",
             title: "Goose Fruits",
-            slug : "" // stream-6
+            slug : ""
           },
           {
             day  : "15",
             title: "ALT3",
-            slug : "" // virtual-152
+            slug : ""
           },
           {
             day  : "21",
             title: "VRでもボカクラにいきたいっ！",
-            slug : "" // virtual-153
+            slug : ""
           },
           {
             day  : "25",
             title: "第45回広義民族音楽オンリーイベント Mysnic Music of the World",
-            slug : "" // virtual-154
+            slug : ""
           }
         ]
       },
@@ -1030,47 +1030,47 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "5",
             title: "Club Silhouette",
-            slug : "" // virtual-155
+            slug : ""
           },
           {
             day  : "10",
             title: "méllon's aftrelives #212",
-            slug : "" // virtual-156
+            slug : "mellons-afterlives-19"
           },
           {
             day  : "18",
             title: "VJしたいっ vol.38",
-            slug : "" // virtual-157
+            slug : ""
           },
           {
             day  : "19",
             title: "Under Sea Music Event Vol.34",
-            slug : "" // virtual-158
+            slug : ""
           },
           {
             day  : "20",
             title: "CAT SANCTUARY",
-            slug : "" // virtual-159
+            slug : ""
           },
           {
             day  : "21",
             title: "MONDAY RELIEF 232nd",
-            slug : "" // virtual-160
+            slug : ""
           },
           {
             day  : "26",
             title: "VRC電音研 リアル課外活動 at CIRCUSTOKYO",
-            slug : "" // real-9
+            slug : ""
           },
           {
             day  : "27",
             title: "THE LUV BUGS",
-            slug : "" // real-10
+            slug : ""
           },
           {
             day  : "31",
             title: "DJなんもわからん EP.139",
-            slug : "" // virtual-161
+            slug : ""
           }
         ]
       },
@@ -1080,37 +1080,37 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "3",
             title: "THE OUTSIDERS",
-            slug : "" // virtual-162
+            slug : ""
           },
           {
             day  : "4",
             title: "GOOD INTERNET 2 Release Party",
-            slug : "" // virtual-163
+            slug : ""
           },
           {
             day  : "5",
             title: "SUSHI HOUSE",
-            slug : "" // virtual-164
+            slug : ""
           },
           {
             day  : "12",
             title: "第20回 雑ボカ。～雑にボカロをかけれる会～",
-            slug : "" // virtual-165
+            slug : ""
           },
           {
             day  : "13",
             title: "Future Nova Vol.34",
-            slug : "" // virtual-166
+            slug : ""
           },
           {
             day  : "17",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-167
+            slug : ""
           },
           {
             day  : "24",
             title: "Not Applicable vol.14",
-            slug : "" // virtual-168
+            slug : ""
           }
         ]
       },
@@ -1120,12 +1120,12 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "3",
             title: "Quest Danceparty Club no.184",
-            slug : "" // virtual-169
+            slug : ""
           },
           {
             day  : "5",
             title: "THE LUV BUGS in VRChat vol.1",
-            slug : "" // virtual-170
+            slug : ""
           }
         ]
       }
@@ -1140,27 +1140,27 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "2",
             title: "THE OUTSIDERS -THE END OF 2024 VR RAVE!!-",
-            slug : "" // virtual-171
+            slug : ""
           },
           {
             day  : "18",
             title: "The 3rd Anniversary Day1",
-            slug : "" // virtual-172
+            slug : ""
           },
           {
             day  : "19",
             title: "tèchne",
-            slug : "" // virtual-173
+            slug : ""
           },
           {
             day  : "22",
             title: "BUG COLLECTIVE",
-            slug : "" // virtual-174
+            slug : ""
           },
           {
             day  : "25",
             title: "DJなんもわからん 3rdAnniversary From:現実世界",
-            slug : "" // real-11
+            slug : ""
           }
         ]
       },
@@ -1170,27 +1170,27 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-175
+            slug : ""
           },
           {
             day  : "8",
             title: "ごっつええFuture",
-            slug : "" // virtual-176
+            slug : ""
           },
           {
             day  : "13",
             title: "méllon's aftrelives",
-            slug : "" // virtual-177
+            slug : "mellons-afterlives-20"
           },
           {
             day  : "21",
             title: "KABU誕生日",
-            slug : "" // virtual-178
+            slug : ""
           },
           {
             day  : "28",
             title: "BPM130",
-            slug : "" // virtual-179
+            slug : ""
           }
         ]
       },
@@ -1200,27 +1200,27 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "4",
             title: "rad",
-            slug : "" // virtual-180
+            slug : ""
           },
           {
             day  : "7",
             title: "House会",
-            slug : "" // virtual-181
+            slug : ""
           },
           {
             day  : "13",
             title: "méllon's aftrelives",
-            slug : "" // virtual-182
+            slug : "mellons-afterlives-21"
           },
           {
             day  : "16",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-183
+            slug : ""
           },
           {
             day  : "26",
             title: "Magent",
-            slug : "" // virtual-184
+            slug : ""
           }
         ]
       },
@@ -1230,22 +1230,22 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "2",
             title: "Budots",
-            slug : "" // virtual-185
+            slug : ""
           },
           {
             day  : "10",
             title: "méllon's aftrelives",
-            slug : "" // virtual-186
+            slug : "mellons-afterlives-22"
           },
           {
             day  : "12",
             title: "Usturo",
-            slug : "" // virtual-187
+            slug : ""
           },
           {
             day  : "21",
             title: "MONDAY RELIEF",
-            slug : "" // virtual-188
+            slug : ""
           }
         ]
       },
@@ -1255,32 +1255,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "1",
             title: "méllon's aftrelives",
-            slug : "" // virtual-189
+            slug : "mellons-afterlives-23"
           },
           {
             day  : "3",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-190
+            slug : ""
           },
           {
             day  : "4",
             title: "Kleidscope",
-            slug : "" // virtual-191
+            slug : ""
           },
           {
             day  : "11",
             title: "Tomodachi Night in May.",
-            slug : "" // virtual-192
+            slug : ""
           },
           {
             day  : "18",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-193
+            slug : ""
           },
           {
             day  : "31",
             title: "THE LUV BUGS vol.2",
-            slug : "" // real-12
+            slug : ""
           }
         ]
       },
@@ -1290,27 +1290,27 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "12",
             title: "méllon's aftrelives",
-            slug : "" // virtual-194
+            slug : "mellons-afterlives-24"
           },
           {
             day  : "21",
             title: "Gathering",
-            slug : "" // virtual-195
+            slug : ""
           },
           {
             day  : "25",
             title: "民族音楽",
-            slug : "" // virtual-196
+            slug : ""
           },
           {
             day  : "28",
             title: "CLUB DEEP BLUE",
-            slug : "" // virtual-197
+            slug : ""
           },
           {
             day  : "29",
             title: "FOOTWORKIN IN VRC",
-            slug : "" // virtual-198
+            slug : ""
           }
         ]
       },
@@ -1320,32 +1320,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "5",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-199
+            slug : ""
           },
           {
             day  : "8",
             title: "SUSHI HOUSE",
-            slug : "" // virtual-200
+            slug : ""
           },
           {
             day  : "12",
             title: "北海道リアル電音研",
-            slug : "" // real-13
+            slug : ""
           },
           {
             day  : "20",
             title: "CLUB SILHOUETTE",
-            slug : "" // virtual-201
+            slug : ""
           },
           {
             day  : "24",
             title: "QroQujaQue",
-            slug : "" // virtual-202
+            slug : ""
           },
           {
             day  : "27",
             title: "Interxia",
-            slug : "" // real-14
+            slug : ""
           }
         ]
       },
@@ -1355,32 +1355,32 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "3",
             title: "THE Outside",
-            slug : "" // virtual-203
+            slug : ""
           },
           {
             day  : "3",
             title: "BUG COLLECTIVE",
-            slug : "" // virtual-204
+            slug : ""
           },
           {
             day  : "7",
             title: "méllon's aftrelives",
-            slug : "" // virtual-205
+            slug : "mellons-afterlives-25"
           },
           {
             day  : "9",
             title: "THE LUV BUGS in VRChat vol.2",
-            slug : "" // virtual-206
+            slug : ""
           },
           {
             day  : "16",
             title: "ごっつええFuture",
-            slug : "" // virtual-207
+            slug : ""
           },
           {
             day  : "24",
             title: "WireBoX",
-            slug : "" // virtual-208
+            slug : ""
           }
         ]
       },
@@ -1390,22 +1390,22 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "13",
             title: "130BPM",
-            slug : "" // real-15
+            slug : ""
           },
           {
             day  : "17",
             title: "VRC電音研",
-            slug : "" // virtual-209
+            slug : ""
           },
           {
             day  : "18",
             title: "méllon's afterlives #258",
-            slug : "mellons-afterlives-26" // virtual-210
+            slug : "mellons-afterlives-26"
           },
           {
             day  : "26",
             title: "THE LUV BUGS LAB × 文字とクラブ",
-            slug : "" // real-16
+            slug : ""
           }
         ]
       },
@@ -1415,17 +1415,17 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "23",
             title: "ジャケ買い",
-            slug : "" // virtual-211
+            slug : ""
           },
           {
             day  : "25",
             title: "n/a",
-            slug : "" // real-17
+            slug : ""
           },
           {
             day  : "28",
             title: "city night drive night",
-            slug : "" // virtual-212
+            slug : ""
           }
         ]
       },
@@ -1435,22 +1435,22 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "6",
             title: "méllon's afterlives",
-            slug : "" // virtual-213
+            slug : "mellons-afterlives-27"
           },
           {
             day  : "8",
             title: "THE LUV BUGS vol.3",
-            slug : "" // real-18
+            slug : ""
           },
           {
             day  : "12",
             title: "VRC電音研",
-            slug : "" // virtual-214
+            slug : ""
           },
           {
             day  : "26",
             title: "民族",
-            slug : "" // virtual-215
+            slug : ""
           }
         ]
       },
@@ -1460,7 +1460,7 @@ export const DjIndex: EventYearGroup[] = [
           {
             day  : "4",
             title: "QroQujaQue",
-            slug : "" // virtual-216
+            slug : ""
           },
           {
             day  : "6",
@@ -1469,8 +1469,8 @@ export const DjIndex: EventYearGroup[] = [
           },
           {
             day  : "18",
-            title: "méllon's afterlives",
-            slug : "" // virtual-217
+            title: "méllon's afterlives #271",
+            slug : "mellons-afterlives-28"
           }
         ]
       }
@@ -1504,7 +1504,7 @@ export const DjIndex: EventYearGroup[] = [
           },
           {
             day  : "25",
-            title: "𝗧𝗵𝗲 𝟰𝘁𝗵 𝗔𝗻𝗻𝗶𝘃𝗲𝗿𝘀𝗮𝗿𝘆",
+            title: "𝗧𝗵𝗲 𝟰𝘁𝗵 𝗔𝗻𝗻𝗶𝘃𝗲𝗿𝘀𝗮𝗿𝘆 Day2",
             slug : "the-4th-anniv"
           },
           {

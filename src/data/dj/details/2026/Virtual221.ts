@@ -13,7 +13,6 @@ export const event: EventDetail = {
     end  : "23:40"
   },
   place: {
-    name    : "Trinity Tails",
     platform: {
       name    : "VRChat",
       instance: "Group+"
@@ -30,6 +29,10 @@ export const event: EventDetail = {
       url : "https://log.flyan.net/about"
     }
   ],
+  group: {
+    name: "Trinity Tails",
+    url : "https://vrc.group/FURAPI.1081"
+  },
   support : [
     {
       role  : "DJ",
@@ -37,6 +40,9 @@ export const event: EventDetail = {
         {
           name: "feLto",
           url : "https://x.com/ChatVR127751"
+        },
+        {
+          name: "loser4dim"
         },
         {
           name: "muglow",
@@ -57,9 +63,6 @@ export const event: EventDetail = {
         {
           name: "Yawarakan",
           url : "https://x.com/yawarakan_vrc"
-        },
-        {
-          name: "loser4dim"
         }
       ]
     },
@@ -86,6 +89,63 @@ export const event: EventDetail = {
     }
   ],
   hashtags: ["init_vr", "TrinityTails", "VRChat"],
+  timeSlot: [
+    {
+      start   : "21:00",
+      end     : "24:00",
+      performs: [
+        {
+          start: "21:00",
+          end  : "21:40",
+          dj   : ["Tsuβaki"],
+          vj   : ["Kenbok"]
+        },
+        {
+          start: "21:40",
+          end  : "22:20",
+          dj   : ["muglow"],
+          vj   : ["Kenbok"]
+        },
+        {
+          start: "22:20",
+          end  : "23:00",
+          dj   : ["feLto"],
+          vj   : ["ろびん"]
+        },
+        {
+          start: "23:00",
+          end  : "23:40",
+          dj   : ["loser4dim"],
+          vj   : ["ろびん"]
+        }
+      ]
+    },
+    {
+      start   : "21:00",
+      end     : "24:00",
+      performs: [
+        {
+          start: "21:20",
+          end  : "22:00",
+          dj   : ["S²KMA⁴"],
+          vj   : ["rafu"]
+        },
+        
+        {
+          start: "22:00",
+          end  : "22:40",
+          dj   : ["Yawarakan"],
+          vj   : ["rafu"]
+        },
+        {
+          start: "22:40",
+          end  : "23:20",
+          dj   : ["napochaan"],
+          vj   : ["rafu"]
+        }
+      ]
+    }
+  ],
   setlist: [
     {
       index : 0,
@@ -178,7 +238,7 @@ export const event: EventDetail = {
       url   : "https://yutsuri.bandcamp.com/album/infinite-integr-t-ons"
     },
     {
-      index : 15,
+      index : 99,
       artist: "ユニティちゃん",
       track : "ありがとうございましたー！",
       url   : "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack"

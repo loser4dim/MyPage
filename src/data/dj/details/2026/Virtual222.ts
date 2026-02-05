@@ -1,121 +1,121 @@
 import { EventDetail } from "@/types/EventDetail";
 
 export const event: EventDetail = {
-  slug: "club-silhouette-23",
+  slug : "club-silhouette-23",
   title: "CLUB SILHOUETTE",
   date: {
-    year: 2026,
+    year : 2026,
     month: 1,
-    day: 18,
+    day : 18
   },
   time: {
     start: "23:00",
-    end: "24:00",
+    end  : "24:00"
   },
   place: {
-    name: "CLUB-SILHOUETTE- 第１インスタンス",
+    name    : "CLUB-SILHOUETTE- 第１インスタンス",
     platform: {
-      name: "VRChat",
-      instance: "Friends",
-    },
+      name    : "VRChat",
+      instance: "Friends"
+    }
   },
   flyer: {
     width: 1282,
     height: 1920,
-    image: "/dj/club-silhouette.avif",
+    image: "/dj/club-silhouette.avif"
   },
   organizers: [
     {
       name: "LUMI*るみ*",
-      url: "https://www.foriio.com/lumi-vr",
-    },
+      url : "https://www.foriio.com/lumi-vr"
+    }
   ],
   support: [
     {
-      role: "DJ",
+      role      : "DJ",
       performers: [
         {
-          name: "Mazzn1987",
-          url: "https://lit.link/mazzn1987",
+          name: "loser4dim"
         },
         {
-          name: "loser4dim",
-        },
-      ],
-    },
+          name: "Mazzn1987",
+          url : "https://lit.link/mazzn1987"
+        }
+      ]
+    }
   ],
   announcements: [
     {
       sns: "𝕏-Twitter",
-      url: "https://x.com/vrc_silhouette/status/2010547292307431534",
-    },
+      url: "https://x.com/vrc_silhouette/status/2010547292307431534"
+    }
   ],
   hashtags: ["VRCシルエット", "VRChat"],
   timeSlot: [
     {
-      start: "23:00",
-      end: "24:00",
+      start   : "23:00",
+      end     : "24:00",
       performs: [
         {
           start: "23:00",
-          end: "23:30",
-          dj: ["Mazzn1987"],
+          end  : "23:30",
+          dj   : ["Mazzn1987"]
         },
         {
           start: "23:30",
-          end: "24:00",
-          dj: ["loser4dim"],
-        },
-      ],
-    },
+          end  : "24:00",
+          dj   : ["loser4dim"]
+        }
+      ]
+    }
   ],
   setlist: [
     {
-      index: 1,
+      index : 1,
       artist: "三宅優",
-      track: "塊オンザファンク (中塚武 edit)",
-      url: "https://columbia.jp/katamari/",
+      track : "塊オンザファンク (中塚武 edit)",
+      url   : "https://columbia.jp/katamari/",
     },
     {
-      index: 2,
+      index : 2,
       artist: "Alok, KENNY DOPE, Ella Eyre, Crystal Waters",
-      track: "Deep Down (Never Dull's In My Mind Edit)",
-      url: "https://alokxellaeyrexkennydopexneverdull.lnk.to/DeepDown",
+      track : "Deep Down (Never Dull's In My Mind Edit)",
+      url   : "https://alokxellaeyrexkennydopexneverdull.lnk.to/DeepDown",
     },
     {
-      index: 3,
+      index : 3,
       artist: "目黒将司",
-      track: "Pursuing My True Self (KARUT Remix)",
-      url: "https://hypeddit.com/track/on8fi9",
+      track : "Pursuing My True Self (KARUT Remix)",
+      url   : "https://hypeddit.com/track/on8fi9",
     },
     {
       index: 4,
       artist: "The Seatbelts",
-      track: "Tank! (Musicarus Turbofunk Remix)",
-      url: "https://soundcloud.com/mscrs/tnkrmx",
+      track : "Tank! (Musicarus Turbofunk Remix)",
+      url   : "https://soundcloud.com/mscrs/tnkrmx",
     },
     {
       index: 5,
       artist: "Mousse T., Hot'n'Juicy",
-      track: "98'Horny (Extended Mix)",
-      url: "https://mousset.bandcamp.com/album/horny",
+      track : "98'Horny (Extended Mix)",
+      url   : "https://mousset.bandcamp.com/album/horny",
     },
     {
       index: 6,
       artist: "Chaz Jankel",
-      track: "Ai No Corrida (Malla's House Edit)",
-      url: "https://mallauk.bandcamp.com/track/ai-no-corrida-mallas-house-edit",
+      track : "Ai No Corrida (Malla's House Edit)",
+      url   : "https://mallauk.bandcamp.com/track/ai-no-corrida-mallas-house-edit",
     },
     {
       index: 7,
       artist: "HI-RISE",
-      track: "I Believe In Miracles (The Time Stretch Kings In-Form Mix)",
-      url: "https://www.discogs.com/release/123393-Hi-Rise-I-Believe-In-Miracles",
+      track : "I Believe In Miracles (The Time Stretch Kings In-Form Mix)",
+      url   : "https://www.discogs.com/release/123393-Hi-Rise-I-Believe-In-Miracles",
     },
     {
-      index: 8,
+      index : 8,
       artist: "THE SQUARE",
-      track: "宝島 (ctx edit 2025)",
+      track : "宝島 (ctx edit 2025)",
     },
   ],
   galleryTwitter: [
@@ -154,6 +154,6 @@ export const event: EventDetail = {
     "2013831244480684228",
     "2013832330087985582",
     "2013833548931735625",
-    "2013853859756511427",
-  ],
+    "2013853859756511427"
+  ]
 };

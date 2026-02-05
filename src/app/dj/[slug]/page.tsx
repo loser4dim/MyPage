@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import WavePlayer from "@/components/dj/WavePlayer";
 import TransitionLink from "@/components/transition/TransitionLink";
-import TweetList from "@/components/twitter/TweetList"
+import TweetList from "@/components/twitter/TweetList";
 import { allPlayEvents } from "@/data/dj/AllEvents";
 
 export const dynamic = "force-static";
@@ -11,8 +11,17 @@ export async function generateStaticParams() {
   return Object.keys(allPlayEvents).map((slug) => ({ slug }));
 }
 
-function timeToMinutes(time: string): number {
+function timeToMinutes(time?: string): number {
+  if (!time) {
+    return 0;
+  }
+
   const [h, m] = time.split(":").map(Number);
+
+  if (!Number.isFinite(h) || !Number.isFinite(m)) {
+    return 0;
+  }
+
   return h * 60 + m;
 }
 
@@ -25,6 +34,18 @@ function timeDiffToHeight(start: string, end: string): number {
   return (timeToMinutes(end) - timeToMinutes(start)) * 2;
 }
 
+function hasValidRangeTime(
+  slot: Partial<{ start: string; end: string }>,
+): slot is { start: string; end: string } {
+  return Boolean(slot.start && slot.end);
+}
+
+function minutesToTime(minutes: number): string {
+  const h = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return `${h}:${mm}`;
+}
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = await Promise.resolve(params);
   const event = allPlayEvents[slug as keyof typeof allPlayEvents];
@@ -32,31 +53,47 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  let hourSteps: string[] = [];
-  if (event.timeSlot) {
-    const start = event.timeSlot.start;
-    const end = event.timeSlot.end;
-    const startMin = timeToMinutes(start);
-    const endMin = timeToMinutes(end);
-    const count = (endMin - startMin) / 60 + 1;
+  const timeSlots = event.timeSlot ?? [];
+  const timelineStartMinutes =
+    timeSlots.length > 0
+      ? Math.min(...timeSlots.map((slot) => timeToMinutes(slot.start)))
+      : 0;
+  const timelineEndMinutes =
+    timeSlots.length > 0
+      ? Math.max(...timeSlots.map((slot) => timeToMinutes(slot.end)))
+      : 0;
+  const hourSteps =
+    timeSlots.length > 0
+      ? Array.from(
+          {
+            length:
+              Math.floor((timelineEndMinutes - timelineStartMinutes) / 60) + 1,
+          },
+          (_, i) => minutesToTime(timelineStartMinutes + i * 60),
+        )
+      : [];
 
-    hourSteps = Array.from({ length: count }, (_, i) => {
-      const m = startMin + i * 60;
-      const h = String(Math.floor(m / 60)).padStart(2, "0");
-      const mm = String(m % 60).padStart(2, "0");
-      return `${h}:${mm}`;
-    });
-  }
+  const timetableColumnCount = Math.min(Math.max(timeSlots.length, 1), 3);
+  const timetableGridColumnsClass =
+    timetableColumnCount === 1
+      ? "md:grid-cols-1"
+      : timetableColumnCount === 2
+        ? "md:grid-cols-2"
+        : "md:grid-cols-3";
+  const timetableMaxWidthClass =
+    timetableColumnCount === 1
+      ? "md:max-w-2xl"
+      : timetableColumnCount === 2
+        ? "md:max-w-5xl"
+        : "md:max-w-7xl";
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-10">
+    <div className="mx-auto max-w-7xl space-y-10 p-6">
       <div>
-        <h1 className="text-3xl font-bold mb-1">
-          {event.title}
-        </h1>
+        <h1 className="mb-1 text-3xl font-bold">{event.title}</h1>
         <p className="text-sm">
-          {`${event.date.year}年${event.date.month}月${event.date.day}日`}
-          {" "} {`${event.time.start} - ${event.time.end}`}
+          {`${event.date.year}年${event.date.month}月${event.date.day}日`}{" "}
+          {`${event.time.start} - ${event.time.end}`}
           {event.place.name && (
             <>
               {" / "}
@@ -77,14 +114,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
           {event.place.platform && (
             <>
               {" in "}
-              {event.place.platform.name && (
-                <>
-                  {event.place.platform.name} {" "}
-                </>
-              )}
+              {event.place.platform.name && <>{event.place.platform.name} </>}
               {event.place.platform.instance && (
                 <>
-                  {"("}{event.place.platform.instance}{")"}
+                  {"("}
+                  {event.place.platform.instance}
+                  {")"}
                 </>
               )}
             </>
@@ -92,15 +127,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-[2fr_1fr] gap-6">
-        { /*Flyer*/
+      <div className="grid gap-6 md:grid-cols-[2fr_1fr]">
+        {
+          /*Flyer*/
           event.flyer && (
             <Image
               src={event.flyer.image}
               alt="flyer"
               width={event.flyer.width}
               height={event.flyer.height}
-              className="rounded object-contain w-full h-auto"
+              className="h-auto w-full rounded object-contain"
               style={{ maxHeight: "85vh" }}
             />
           )
@@ -108,352 +144,291 @@ export default async function Page({ params }: { params: { slug: string } }) {
         {
           /*Info*/
           <div className="space-y-3 text-sm">
-            <h2 className="text-xl border-b">
-              Infomation
-            </h2>
-            {
-              event.organizers.length > 0 && (
-                <p>
-                  Organizer:{" "} {
-                    event.organizers.map(
-                      (o, i) => {
-                        const name = o.url ? (
+            <h2 className="border-b text-xl">Infomation</h2>
+            {event.organizers.length > 0 && (
+              <p>
+                Organizer:{" "}
+                {event.organizers.map((o, i) => {
+                  const name = o.url ? (
+                    <a
+                      key={i}
+                      href={o.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-highlight"
+                    >
+                      {o.name}
+                    </a>
+                  ) : (
+                    <span key={i}>{o.name}</span>
+                  );
+                  return (
+                    <span key={i}>
+                      {name}
+                      {i < event.organizers.length - 1 ? ", " : ""}
+                    </span>
+                  );
+                })}
+              </p>
+            )}
+            {event.group?.name && (
+              <p>
+                Group:{" "}
+                <a
+                  href={event.group.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-highlight"
+                >
+                  {event.group.name}
+                </a>
+              </p>
+            )}
+            {event.support && event.support.length > 0 && (
+              <div>
+                <ul className="space-y-3">
+                  {event.support.map((s, i) => (
+                    <li key={i}>
+                      <span>{s.role}</span>
+                      {": "}
+                      {s.performers.map((person, j) => {
+                        const content = person.url ? (
                           <a
-                            key={i}
-                            href={o.url}
+                            key={j}
+                            href={person.url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-highlight"
                           >
-                            {o.name}
+                            {person.name}
                           </a>
-                        ): (
-                          <span key = {i}>
-                            {o.name}
-                          </span>
+                        ) : (
+                          <span key={j}>{person.name}</span>
                         );
                         return (
-                          <span key={i}>
-                            {name}
-                            {i < event.organizers.length - 1 ? ", " : ""}
+                          <span key={j}>
+                            {content}
+                            {j < s.performers.length - 1 ? ", " : ""}
                           </span>
                         );
-                      }
-                    )
-                  }
-                </p>
-              )
-            }
-            {
-              event.group?.name && 
-                <p>
-                  Group:{" "}
-                  <a href={event.group.url} target="_blank" rel="noopener noreferrer" className="text-highlight">
-                    {event.group.name}
-                  </a>
-                </p>
-            }
-            {
-              event.support && (event.support.length > 0) && (
-                <div>
-                  <ul className="space-y-3">
-                    {
-                      event.support.map(
-                        (s, i) => (
-                          <li key={i}>
-                            <span>
-                              {s.role}
-                            </span>
-                            {": "}
-                            {
-                              s.performers.map(
-                                (person, j) => {
-                                  const content = person.url ? (
-                                    <a
-                                      key={j}
-                                      href={person.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-highlight"
-                                    >
-                                      {person.name}
-                                    </a>
-                                  ) : (
-                                    <span key={j}>{person.name}</span>
-                                  );
-                                  return (
-                                    <span key={j}>
-                                      {content}
-                                      {j < s.performers.length - 1 ? ", " : ""}
-                                    </span>
-                                  );
-                                }
-                              )
-                            }
-                          </li>
-                        )
-                      )
-                    }
-                  </ul>
-                </div>
-              )
-            }
-            {
-              event.announcements.length > 0 && (
-                <div>
-                  {
-                    event.announcements.map(
-                      (a, i) => (
-                        <span key={i}>
-                          <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-highlight">
-                            {a.sns}
-                          </a>
-                          {
-                            (i < event.announcements.length - 1) && ", "
-                          }
-                        </span>
-                      )
-                    )
-                  }
-                </div>
-              )
-            }
-            {
-              event.hashtags && event.hashtags.length > 0 && 
-              (
-                <p>
-                  {
-                    event.hashtags.map(
-                      (tag) => `#${tag}`).join(" ")
-                    }
-                </p>
-              )
-            }
+                      })}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {event.announcements.length > 0 && (
+              <div>
+                {event.announcements.map((a, i) => (
+                  <span key={i}>
+                    <a
+                      href={a.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-highlight"
+                    >
+                      {a.sns}
+                    </a>
+                    {i < event.announcements.length - 1 && ", "}
+                  </span>
+                ))}
+              </div>
+            )}
+            {event.hashtags && event.hashtags.length > 0 && (
+              <p>{event.hashtags.map((tag) => `#${tag}`).join(" ")}</p>
+            )}
           </div>
-        
-
         }
       </div>
-        
 
       <div>
-        {
-          (event.timetable || event.timeSlot) && (
-            <h2 className="text-xl text-center mb-2">
-              Timetable
-            </h2>
-          )
-        }
-        {
-          event.timetable ? (
-            <div className="flex justify-center">
-              <Image
-                src={event.timetable.image}
-                alt="timetable"
-                width={event.timetable.width}
-                height={event.timetable.height}
-                className="rounded object-contain h-auto max-w-full md:max-w-2/3"
-              />
-            </div>
-          ) : (
-            event.timeSlot && (() => {
-              const { start, end, performs } = event.timeSlot;
+        {(event.timetable || event.timeSlot) && (
+          <h2 className="mb-2 text-center text-xl">Timetable</h2>
+        )}
+        {event.timetable ? (
+          <div className="flex justify-center">
+            <Image
+              src={event.timetable.image}
+              alt="timetable"
+              width={event.timetable.width}
+              height={event.timetable.height}
+              className="h-auto max-w-full rounded object-contain md:max-w-2/3"
+            />
+          </div>
+        ) : (
+          timeSlots.length > 0 && (
+            <div
+              className="relative mt-2"
+              style={{
+                height:
+                  timelineEndMinutes - timelineStartMinutes > 0
+                    ? timeDiffToHeight(
+                        minutesToTime(timelineStartMinutes),
+                        minutesToTime(timelineEndMinutes),
+                      ) + 40
+                    : 0,
+              }}
+            >
+              {hourSteps.map((time, i) => (
+                <div key={i} className="relative" style={{ height: 120 }}>
+                  <div
+                    className="absolute top-0 left-0 w-[64px] pr-2 text-right text-sm"
+                    style={{
+                      lineHeight: "1",
+                      transform: "translateY(-0.45em)",
+                    }}
+                  >
+                    {time}
+                  </div>
 
-              return (
-              <div
-                className="relative mt-2"
-                style={{
-                  height: timeDiffToHeight(start, end) + 40,
-                }}
-              >
-                {
-                  hourSteps.map(
-                    (time, i) => (
-                      <div key={i} className="relative" style={{ height: 120 }}>
-                        <div
-                          className="absolute top-0 left-0 w-[64px] text-right pr-2 text-sm"
-                          style={{
-                            lineHeight: "1",
-                            transform : "translateY(-0.45em)",
-                          }}
-                        >
-                          {time}
-                        </div>
-
-                      <div
-                        className="absolute top-0 border-t border-highlight border-dashed"
-                        style={{
-                          left : "72px",
-                          right: "72px"
-                        }}
-                      />
-                      </div>
-                    )
-                  )
-                }
+                  <div
+                    className="border-highlight absolute top-0 border-t border-dashed"
+                    style={{
+                      left: "72px",
+                      right: "72px",
+                    }}
+                  />
+                </div>
+              ))}
+              <div className="absolute top-0 right-[96px] left-[96px] px-2 sm:px-4 md:px-6">
                 <div
-                  className="absolute top-0 left-[96px] right-[96px] px-2 sm:px-4 md:px-6"
+                  className={`mx-auto grid w-full gap-2 ${timetableGridColumnsClass} ${timetableMaxWidthClass}`}
                 >
-                  {
-                    performs.map(
-                      (slot, i) => (
-                        <div
-                          key={i}
-                          className="absolute bg-neutral-600 rounded-md px-4 mx-auto"
-                          style={{
-                            top: timeToPosition(slot.start, start)+5,
-                            height: timeDiffToHeight(slot.start, slot.end)-10,
-                            left: "0",
-                            right: "0",
-                            maxWidth: "640px"
-                          }}
-                        >
-                          <div className="flex items-center justify-center h-full text-center text-neutral-200 px-2 py-1">
-                            {slot.start} – {slot.end}
-                            <br />
+                  {timeSlots.map((timeSlot, columnIndex) => (
+                    <div key={columnIndex} className="relative">
+                      {timeSlot.performs
+                        .filter(hasValidRangeTime)
+                        .map((slot, i) => (
+                          <div
+                            key={i}
+                            className="absolute left-0 w-full rounded-md bg-neutral-600 px-4"
+                            style={{
+                              top:
+                                timeToPosition(
+                                  slot.start,
+                                  minutesToTime(timelineStartMinutes),
+                                ) + 5,
+                              height:
+                                timeDiffToHeight(slot.start, slot.end) - 10,
+                            }}
+                          >
+                            <div className="flex h-full items-center justify-center px-2 py-1 text-center text-neutral-200">
+                              {slot.start} – {slot.end}
+                              <br />
                               {slot.dj.join(" × ")}
-                            {
-                              slot.vj && (slot.vj.length > 0) && (
+                              {slot.vj && slot.vj.length > 0 && (
                                 <>
                                   {" / "}
-                                    {slot.vj.join(" × ")}
+                                  {slot.vj.join(" × ")}
                                 </>
-                              )
-                            }
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      )
-                    )
-                  }
+                        ))}
+                    </div>
+                  ))}
                 </div>
               </div>
-            );
-  })())
-        }
+            </div>
+          )
+        )}
       </div>
 
-      {
-        event.mixArchives && (event.mixArchives.length > 0) && (
-          <div>
-            <h2 className="text-center text-xl mb-2">
-              Mix
-            </h2>
-            <div className="space-y-6">
-              {
-                event.mixArchives.map(
-                  (mix, i) => {
-                    if (mix.type === "mixcloud") {
-                      return (
-                        <div key={i} className="rounded-lg overflow-hidden shadow-lg border border-neutral-700">
-                          <iframe
-                            src={mix.embedUrl}
-                            width="100%"
-                            height="120"
-                            allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"
-                            className="w-full"
-                            title={`Mixcloud player ${i}`}
-                          />
-                        </div>
-                      );
-                    }
-
-                    if (mix.type === "cloudflare") {
-                      return (
-                        <div
-                          key={i}
-                          className="rounded-lg p-4 shadow-lg border border-neutral-700 bg-neutral-900 space-y-2"
-                        >
-                          <WavePlayer src={mix.embedUrl} />
-                        </div>
-                      );
-                    }
-
-                    return null;
-                  }
-                ) 
+      {event.mixArchives && event.mixArchives.length > 0 && (
+        <div>
+          <h2 className="mb-2 text-center text-xl">Mix</h2>
+          <div className="space-y-6">
+            {event.mixArchives.map((mix, i) => {
+              if (mix.type === "mixcloud") {
+                return (
+                  <div
+                    key={i}
+                    className="overflow-hidden rounded-lg border border-neutral-700 shadow-lg"
+                  >
+                    <iframe
+                      src={mix.embedUrl}
+                      width="100%"
+                      height="120"
+                      allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;"
+                      className="w-full"
+                      title={`Mixcloud player ${i}`}
+                    />
+                  </div>
+                );
               }
-            </div>
+
+              if (mix.type === "cloudflare") {
+                return (
+                  <div
+                    key={i}
+                    className="space-y-2 rounded-lg border border-neutral-700 bg-neutral-900 p-4 shadow-lg"
+                  >
+                    <WavePlayer src={mix.embedUrl} />
+                  </div>
+                );
+              }
+
+              return null;
+            })}
           </div>
-        )
-      }
-      {
-        event.setlist && (event.setlist.length > 0) && (
-          <div className="overflow-x-auto mt-6">
-            <h2 className="text-center text-xl mb-2">
-              Setlist
-            </h2>
-            <table className="min-w-full text-sm border-t border-b">
-              <thead>
-                <tr className="bg-neutral-600 text-neutral-200 text-center">
-                  <th className="px-4 py-2 border-dashed border-r">
-                    #
-                  </th>
-                  <th className="px-4 py-2 border-dashed border-r">
-                    Artist
-                  </th>
-                  <th className="px-4 py-2 border-dashed border-r">
-                    Track
-                  </th>
-                  <th className="px-4 py-2 border-dashed">
-                    Link
-                  </th>
+        </div>
+      )}
+      {event.setlist && event.setlist.length > 0 && (
+        <div className="mt-6 overflow-x-auto">
+          <h2 className="mb-2 text-center text-xl">Setlist</h2>
+          <table className="min-w-full border-t border-b text-sm">
+            <thead>
+              <tr className="bg-neutral-600 text-center text-neutral-200">
+                <th className="border-r border-dashed px-4 py-2">#</th>
+                <th className="border-r border-dashed px-4 py-2">Artist</th>
+                <th className="border-r border-dashed px-4 py-2">Track</th>
+                <th className="border-dashed px-4 py-2">Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              {event.setlist.map((track, i) => (
+                <tr key={i} className="border-t hover:bg-neutral-700">
+                  <td className="border-r border-dashed px-4 py-2 text-right">
+                    {track.index}
+                  </td>
+                  <td className="border-r border-dashed px-4 py-2">
+                    {track.artist}
+                  </td>
+                  <td className="border-r border-dashed px-4 py-2">
+                    {track.track}
+                  </td>
+                  <td className="px-4 py-2 text-center">
+                    {track.url && (
+                      <a
+                        href={track.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-highlight"
+                      >
+                        {"[LINK]"}
+                      </a>
+                    )}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {
-                  event.setlist.map(
-                    (track, i) => (
-                      <tr key={i} className="border-t hover:bg-neutral-700 ">
-                        <td className="px-4 py-2 text-right border-dashed border-r">
-                          {track.index}
-                        </td>
-                        <td className="px-4 py-2 border-dashed border-r">
-                          {track.artist}
-                        </td>
-                        <td className="px-4 py-2 border-dashed border-r">
-                          {track.track}
-                        </td>
-                        <td className="px-4 py-2 text-center">
-                          {track.url && (
-                            <a
-                              href={track.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-highlight"
-                            >
-                              {"[LINK]"}
-                            </a>
-                          )}
-                        </td>
-                      </tr>
-                    )
-                  )
-                }
-              </tbody>
-            </table>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {event.galleryTwitter && event.galleryTwitter.length > 0 && (
+        <div className="text-center">
+          <h2 className="mb-2 text-xl">Gallery</h2>
+          <div className="grid w-full grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3">
+            <TweetList ids={event.galleryTwitter} />
           </div>
-        )
-      }
-      {
-        event.galleryTwitter && (event.galleryTwitter.length > 0) && (
-          <div className="text-center">
-            <h2 className="text-xl mb-2">
-              Gallery
-            </h2>
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
-              <TweetList ids={event.galleryTwitter} />
-            </div>
-          </div>
-        )
-      }
-      <footer className="w-full mt-16 border-t text-sm px-4 py-6">
-        <div className="max-w-3xl mx-auto flex justify-between items-center">
-          <p>
-            © {new Date().getFullYear()} loser4dim
-          </p>
+        </div>
+      )}
+      <footer className="mt-16 w-full border-t px-4 py-6 text-sm">
+        <div className="mx-auto flex max-w-3xl items-center justify-between">
+          <p>© {new Date().getFullYear()} loser4dim</p>
           <TransitionLink
             href="/profile"
-            className="relativeafter:block after:absolute after:bottom-0 after:left-0 after:w-0 group-hover:after:w-full after:h-[1px] after:bg-highlight after:transition-all after:duration-400"
+            className="relativeafter:block after:bg-highlight after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:transition-all after:duration-400 group-hover:after:w-full"
           >
             ← return
           </TransitionLink>

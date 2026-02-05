@@ -11,14 +11,15 @@ import { EventDetail } from "@/types/EventDetail";
 //import { event as djV2 } from "@/data/dj/details/2022/DJVitrual2";
 
 export const allPlayEvents: Record<string, EventDetail> = {
-  "practice": djV00,
+  "practice"               : djV00,
   "akipe-tokage-birthday-1": djV01,
-  "dj-unknown-1": djV1,
-  "magnum-tornado-1": djR19,
-  "technoverse-1": djR20,
+  "dj-unknown-1"           : djV1,
+  
   "m4tt-and-friends-1": djV220,
-  "initium-1": djV221,
-  "club-silhouette-23": djV222
+  "initium-1"         : djV221,
+  "club-silhouette-23": djV222,
+  "magnum-tornado-1"  : djR19,
+  "technoverse-1"     : djR20,
 };
 
 

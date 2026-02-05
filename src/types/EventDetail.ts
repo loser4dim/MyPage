@@ -4,44 +4,44 @@ export type Person = {
 };
 
 export type EventDetail = {
-  slug : string
+  slug: string;
   title: string;
 
-  date : {
-    year : number;
+  date: {
+    year: number;
     month: number;
-    day  : number;
+    day: number;
   };
 
   time: {
     start: string;
-    end  : string;
+    end: string;
   };
 
   place: {
-    name?    : string;
-    url?     : string;
+    name?: string;
+    url?: string;
     platform?: {
-      name?    : string;
+      name?: string;
       instance?: string;
     };
   };
 
   flyer?: {
-    width : number;
+    width: number;
     height: number;
-    image : string;
+    image: string;
   };
 
   organizers: Person[];
 
-  group?    : {
+  group?: {
     name: string;
-    url : string;
+    url: string;
   };
 
-  support? : {
-    role      : string;
+  support?: {
+    role: string;
     performers: Person[];
   }[];
 
@@ -53,33 +53,33 @@ export type EventDetail = {
   hashtags?: string[];
 
   timetable?: {
-    width : number;
+    width: number;
     height: number;
-    image : string;
+    image: string;
   };
 
-  timeSlot?      : {
-    start   : string;
-    end     : string;
+  timeSlot?: {
+    start: string;
+    end: string;
     performs: {
       start: string;
-      end  : string;
-      dj   : string[];
-      vj?  : string[];
-    }[]
+      end: string;
+      dj: string[];
+      vj?: string[];
+    }[];
   }[];
 
   mixArchives?: {
-    type    : "mixcloud" | "youtube" | "twitch" | "cloudflare";
+    type: "mixcloud" | "youtube" | "twitch" | "cloudflare";
     embedUrl: string;
   }[];
 
   setlist?: {
-    index : number;
+    index: number;
     artist: string;
-    track : string;
-    url?  : string;
+    track: string;
+    url?: string;
   }[];
 
-  galleryTwitter?: string[]
+  galleryTwitter?: string[];
 };

@@ -1,237 +1,239 @@
 import { EventDetail } from "@/types/EventDetail";
 
 export const event: EventDetail = {
-  slug : "magnum-tornado-1",
+  slug: "magnum-tornado-1",
   title: "MAGNUM TORNADO LAP3",
-  date : {
-    year : 2025,
+  date: {
+    year: 2025,
     month: 12,
-    day  : 6
+    day: 6,
   },
   time: {
     start: "12:00",
-    end  : "18:00"
+    end: "18:00",
   },
   place: {
-    name: "B.B.Q rave kitchen Mediterraneo casa"
+    name: "B.B.Q rave kitchen Mediterraneo casa",
   },
   flyer: {
-    width : 2894,
+    width: 2894,
     height: 4093,
-    image : "/dj/2025/2025-Real-9.avif"
+    image: "/dj/2025/2025-Real-9.avif",
   },
   organizers: [
     {
       name: "suikoko",
-      url : "https://linktr.ee/sainann"
-    }
+      url: "https://linktr.ee/sainann",
+    },
   ],
-  support : [
+  support: [
     {
-      role  : "DJ",
+      role: "DJ",
       performers: [
         {
           name: "komezi",
-          url : "https://lit.link/komezi"
+          url: "https://lit.link/komezi",
         },
         {
           name: "MadaMerica",
-          url : "https://linktr.ee/madamerica"
+          url: "https://linktr.ee/madamerica",
         },
         {
           name: "Marifu",
-          url : "https://marifu.love/"
+          url: "https://marifu.love/",
         },
         {
           name: "Nin",
-          url : "https://x.com/Nin2_0510"
+          url: "https://x.com/Nin2_0510",
         },
         {
           name: "SYNE.",
-          url : "https://potofu.me/syakedaniel"
+          url: "https://potofu.me/syakedaniel",
         },
         {
           name: "ねこたん",
-          url : "https://x.com/VRCaccount1"
+          url: "https://x.com/VRCaccount1",
         },
         {
           name: "早川あおせ",
-          url : "https://hykwaose.tumblr.com/"
+          url: "https://hykwaose.tumblr.com/",
         },
         {
           name: "ろーすとぽてと",
-          url : "https://lit.link/RoastPotato"
+          url: "https://lit.link/RoastPotato",
         },
         {
-          name: "loser4dim"
-        }
-      ]
+          name: "loser4dim",
+        },
+      ],
     },
     {
-      role  : "VJ",
+      role: "VJ",
       performers: [
         {
           name: "himachi",
-          url : "https://x.com/himatchi_vrc"
+          url: "https://x.com/himatchi_vrc",
         },
-         {
+        {
           name: "切り昆布",
-          url : "https://x.com/cutseaweed_vrc"
-        }
-      ]
+          url: "https://x.com/cutseaweed_vrc",
+        },
+      ],
     },
   ],
   announcements: [
     {
       sns: "𝕏-Twitter",
-      url: "https://x.com/sainann/status/1995329584410296761"
-    }
+      url: "https://x.com/sainann/status/1995329584410296761",
+    },
   ],
-  timeSlot: {
-    start   : "12:00",
-    end     : "18:00",
-    performs: [
-      {
-        start: "12:00",
-        end  : "12:40",
-        dj   : ["早川あおせ"],
-        vj   : ["切り昆布"]
-      },
-      {
-        start: "12:40",
-        end  : "13:20",
-        dj   : ["ねこたん"],
-        vj   : ["切り昆布"]
-      },
-      {
-        start: "13:20",
-        end  : "14:00",
-        dj   : ["komezi"],
-        vj   : ["himachi"]
-      },
-      {
-        start: "14:00",
-        end  : "14:40",
-        dj   : ["loser4dim"],
-        vj   : ["himachi"]
-      },
-      {
-        start: "14:40",
-        end  : "15:20",
-        dj   : ["MadaMerica"],
-        vj   : ["切り昆布"]
-      },
-      {
-        start: "15:20",
-        end  : "16:00",
-        dj   : ["marifu"],
-        vj   : ["切り昆布"]
-      },
-      {
-        start: "16:00",
-        end  : "16:40",
-        dj   : ["ろーすとぽてと"],
-        vj   : ["切り昆布"]
-      },
-      {
-        start: "16:40",
-        end  : "17:20",
-        dj   : ["Nin"],
-        vj   : ["himachi"]
-      },
-      {
-        start: "17:20",
-        end  : "18:00",
-        dj   : ["SYNE."],
-        vj   : ["himachi"]
-      }
-    ]
-  },
+  timeSlot: [
+    {
+      start: "12:00",
+      end: "18:00",
+      performs: [
+        {
+          start: "12:00",
+          end: "12:40",
+          dj: ["早川あおせ"],
+          vj: ["切り昆布"],
+        },
+        {
+          start: "12:40",
+          end: "13:20",
+          dj: ["ねこたん"],
+          vj: ["切り昆布"],
+        },
+        {
+          start: "13:20",
+          end: "14:00",
+          dj: ["komezi"],
+          vj: ["himachi"],
+        },
+        {
+          start: "14:00",
+          end: "14:40",
+          dj: ["loser4dim"],
+          vj: ["himachi"],
+        },
+        {
+          start: "14:40",
+          end: "15:20",
+          dj: ["MadaMerica"],
+          vj: ["切り昆布"],
+        },
+        {
+          start: "15:20",
+          end: "16:00",
+          dj: ["marifu"],
+          vj: ["切り昆布"],
+        },
+        {
+          start: "16:00",
+          end: "16:40",
+          dj: ["ろーすとぽてと"],
+          vj: ["切り昆布"],
+        },
+        {
+          start: "16:40",
+          end: "17:20",
+          dj: ["Nin"],
+          vj: ["himachi"],
+        },
+        {
+          start: "17:20",
+          end: "18:00",
+          dj: ["SYNE."],
+          vj: ["himachi"],
+        },
+      ],
+    },
+  ],
   setlist: [
     {
-      index : 0,
+      index: 0,
       artist: "ユニティちゃん",
-      track : "宜しくお願いしまーす！",
-      url   : "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack"
+      track: "宜しくお願いしまーす！",
+      url: "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack",
     },
     {
-      index : 1,
+      index: 1,
       artist: "DJ Heero Yuy",
-      track : "legend of Japanese soul singer WADA",
-      url   : "https://soundcloud.com/dj_heero_yuy/legend-of-japanese-soul-singer-wada"
+      track: "legend of Japanese soul singer WADA",
+      url: "https://soundcloud.com/dj_heero_yuy/legend-of-japanese-soul-singer-wada",
     },
     {
-      index : 2,
+      index: 2,
       artist: "De La Soul feat. Chaka Khan",
-      track : "all good? (mj cole remix)",
-      url   : "https://www.sonymusic.co.jp/artist/Compilation/discography/AICT-164"
+      track: "all good? (mj cole remix)",
+      url: "https://www.sonymusic.co.jp/artist/Compilation/discography/AICT-164",
     },
     {
-      index : 3,
+      index: 3,
       artist: "That Fancy I / 花譜, キズナアイ",
-      track : "Poppin x かりそめ (e4 Mashup)",
-      url   : "https://soundcloud.com/user-1100946"
+      track: "Poppin x かりそめ (e4 Mashup)",
+      url: "https://soundcloud.com/user-1100946",
     },
     {
-      index : 4,
+      index: 4,
       artist: "Pete Heller",
-      track : "Big Love (Carpainter Funky Groove Mix)",
-      url   : "https://soundcloud.com/carpainter/pete-heller-big-love-carpainter-funky-groove-mixfree-download"
+      track: "Big Love (Carpainter Funky Groove Mix)",
+      url: "https://soundcloud.com/carpainter/pete-heller-big-love-carpainter-funky-groove-mixfree-download",
     },
     {
-      index : 5,
+      index: 5,
       artist: "NOLEMON NOMELON",
-      track : "どうにかなっちゃいそう！ (Bowne Bootleg)",
-      url   : "https://soundcloud.com/bowne_dj/nolemon-nomelon-bowne-bootleg"
+      track: "どうにかなっちゃいそう！ (Bowne Bootleg)",
+      url: "https://soundcloud.com/bowne_dj/nolemon-nomelon-bowne-bootleg",
     },
     {
-      index : 6,
+      index: 6,
       artist: "前川みく",
-      track : "おねだり Shall We ～？ (Kur@ra \"Onedari Dub\" Mix)",
-      url   : "https://soundcloud.com/miku_maekawa/onedari-dub"
+      track: 'おねだり Shall We ～？ (Kur@ra "Onedari Dub" Mix)',
+      url: "https://soundcloud.com/miku_maekawa/onedari-dub",
     },
     {
-      index : 7,
+      index: 7,
       artist: "Scatman John",
-      track : "Scatman (Game Over Jazz)",
-      url   : "https://tower.jp/item/144055"
+      track: "Scatman (Game Over Jazz)",
+      url: "https://tower.jp/item/144055",
     },
     {
-      index : 8,
+      index: 8,
       artist: "The Ohm",
-      track : "sing sing sing",
-      url   : "https://www.trekkie-trax.com/ep/trekkie13/"
+      track: "sing sing sing",
+      url: "https://www.trekkie-trax.com/ep/trekkie13/",
     },
     {
-      index : 9,
+      index: 9,
       artist: "DJ FUNK",
-      track : "Circut Breaker (DJ Amar Rework)",
-      url   : "https://djfunk1.bandcamp.com/album/dj-funk-gold-20th-anniversary-24bit-update"
+      track: "Circut Breaker (DJ Amar Rework)",
+      url: "https://djfunk1.bandcamp.com/album/dj-funk-gold-20th-anniversary-24bit-update",
     },
     {
-      index : 10,
+      index: 10,
       artist: "higma",
-      track : "echo (ABSMbootleg)",
-      url   : "https://soundcloud.com/abe-some/freedl-echo-absmbootleg"
+      track: "echo (ABSMbootleg)",
+      url: "https://soundcloud.com/abe-some/freedl-echo-absmbootleg",
     },
     {
-      index : 11,
+      index: 11,
       artist: "higma feat. 星宮とと",
-      track : "PAPERMOON",
-      url   : "https://theluvbugs.lnk.to/PAPERMOON"
+      track: "PAPERMOON",
+      url: "https://theluvbugs.lnk.to/PAPERMOON",
     },
     {
-      index : 12,
+      index: 12,
       artist: "篠澤広",
-      track : "光景 (sibitto Remix)",
-      url   : "https://soundcloud.com/sibitto/sibitto-remix"
+      track: "光景 (sibitto Remix)",
+      url: "https://soundcloud.com/sibitto/sibitto-remix",
     },
     {
-      index : 13,
+      index: 13,
       artist: "ユニティちゃん",
-      track : "ありがとうございましたー！",
-      url   : "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack"
-    }
+      track: "ありがとうございましたー！",
+      url: "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack",
+    },
   ],
   galleryTwitter: [
     "1995329584410296761",
@@ -258,6 +260,6 @@ export const event: EventDetail = {
     "1997158960210850053",
     "1997218843492864025",
     "1997140196702490951",
-    "1997193444356460651"
-  ]
+    "1997193444356460651",
+  ],
 };

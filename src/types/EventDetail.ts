@@ -72,7 +72,13 @@ export type EventDetail = {
   mixArchives?: {
     type: "mixcloud" | "youtube" | "twitch" | "cloudflare";
     embedUrl: string;
+    marker?: {
+      time : number;
+      label: string;
+    }[];
   }[];
+
+  
 
   setlist?: {
     index: number;

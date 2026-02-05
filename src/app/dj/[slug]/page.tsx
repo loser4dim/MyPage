@@ -362,7 +362,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     key={i}
                     className="space-y-2 rounded-lg border border-neutral-700 bg-neutral-900 p-4 shadow-lg"
                   >
-                    <WavePlayer src={mix.embedUrl} />
+                    {mix.marker && mix.marker.length > 0 ? (
+                      <WavePlayer src={mix.embedUrl} markers={mix.marker} />
+                    ) : (
+                      <WavePlayer src={mix.embedUrl} />
+                    )}
                   </div>
                 );
               }

@@ -5,6 +5,10 @@ import WaveSurfer from "wavesurfer.js";
 
 type Props = {
   src: string;
+  markers?: {
+    time : number;
+    label: string;
+  }[];
 };
 
 function formatTime(t: number) {
@@ -14,7 +18,7 @@ function formatTime(t: number) {
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
-export default function WavePlayer({ src }: Props) {
+export default function WavePlayer({ src, markers}: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const wsRef = useRef<WaveSurfer | null>(null);
@@ -27,6 +31,8 @@ export default function WavePlayer({ src }: Props) {
 
   // シーク中のチラつきを抑える
   const posRatio = useMemo(() => (dur > 0 ? pos / dur : 0), [pos, dur]);
+  const [waveW, setWaveW] = useState(0);
+  const BAR_W = 2;
 
   useEffect(() => {
     setReady(false);
@@ -37,6 +43,8 @@ export default function WavePlayer({ src }: Props) {
 
     const container = containerRef.current;
     const audio = audioRef.current;
+    
+
     if (!container || !audio) return;
 
     // 以前のインスタンスを破棄
@@ -92,9 +100,11 @@ export default function WavePlayer({ src }: Props) {
 
     const ro = new ResizeObserver(() => {
       // v7 だと redraw() が安定。無ければ seekTo(…)で再描画誘発でもOK
+      setWaveW(container.clientWidth);
       // @ts-expect-error: wavesurfer version differences
       ws?.renderer?.onResize?.();
     });
+    setWaveW(container.clientWidth);
     ro.observe(container);
 
     return () => {
@@ -140,10 +150,50 @@ export default function WavePlayer({ src }: Props) {
         </button>
 
         <div className="flex-1">
-          <div
-            ref={containerRef}
-            className="h-[80px] w-full overflow-hidden rounded-lg bg-neutral-700"
-          />
+          <div className="relative">
+            <div
+              ref={containerRef}
+              className="relative h-[80px] w-full overflow-hidden rounded-lg bg-neutral-700 z-0"
+            />
+
+            {/* 区切り線（波形の上に重ねる） */}
+            {ready && dur > 0 && waveW > 0 && markers?.map((m, i) => {
+              const r = m.time / dur;
+              if (!Number.isFinite(r) || r < 0 || r > 1) return null;
+
+              const leftPx = (BAR_W / 2) + r * (waveW - BAR_W);
+
+              return (
+                <div
+                  key={i}
+                  className="pointer-events-none absolute top-0 h-full z-20"
+                  style={{ left: `${leftPx}px` }}
+                >
+                  <div className="h-full w-[2px] bg-highlight shadow-[0_0_10px_rgba(0,0,0,0)]" />
+                  {m.label && (
+                    <div
+                      className="
+                        absolute -top-2 left-0
+                        -translate-x-1/2 -translate-y-full
+                        whitespace-nowrap
+                        rounded-full
+                        border border-highlight/40
+                        bg-neutral-950/85
+                        px-2 py-[2px]
+                        text-[8px] font-medium
+                        text-neutral-100
+                        shadow-[0_2px_12px_rgba(0,0,0,0.55)]
+                        backdrop-blur
+                      "
+                    >
+                      {m.label}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
           <input
             className="mt-2 w-full"
             type="range"
@@ -155,6 +205,7 @@ export default function WavePlayer({ src }: Props) {
             disabled={!ready}
           />
         </div>
+
 
         <div className="w-24 text-right text-xs text-neutral-300">
           <div>{formatTime(pos)}</div>

@@ -72,16 +72,156 @@ export const event: EventDetail = {
   mixArchives: [
     {
       type    : "cloudflare",
-      embedUrl: "https://mix.loser4dim.jp/2025/2025-12-18-mellon.opus"
+      embedUrl: "https://mix.loser4dim.jp/2025/2025-12-18-mellon.opus",
+      marker  : [
+        {
+          time : 0,
+          label: "1"
+        },
+        {
+          time : 300,
+          label: "2"
+        },
+        {
+          time : 501,
+          label: "3"
+        },
+        {
+          time : 620,
+          label: "4"
+        },
+        {
+          time : 710,
+          label: "5"
+        },
+        {
+          time : 853,
+          label: "6"
+        },
+        {
+          time : 1082,
+          label: "7"
+        },
+        {
+          time : 1374,
+          label: "8"
+        },
+        {
+          time : 1522,
+          label: "9"
+        },
+        {
+          time : 1669,
+          label: "10"
+        },
+        {
+          time : 1869,
+          label: "11"
+        },
+        {
+          time : 2009,
+          label: "12"
+        },
+        {
+          time : 2200,
+          label: "13"
+        },
+        {
+          time : 2409,
+          label: "14"
+        },
+        {
+          time : 2685,
+          label: "15"
+        },
+        {
+          time : 2998,
+          label: "16"
+        },
+        {
+          time : 3192,
+          label: "17"
+        },
+        {
+          time : 3380,
+          label: "18"
+        },
+        {
+          time : 3570,
+          label: "19"
+        },
+        {
+          time : 3820,
+          label: "20"
+        },
+        {
+          time : 4076,
+          label: "21"
+        },
+        {
+          time : 4570,
+          label: "22"
+        },
+        {
+          time : 4460,
+          label: "23"
+        },
+        {
+          time : 4607,
+          label: "24"
+        },
+        {
+          time : 4805,
+          label: "25"
+        },
+        {
+          time : 5092,
+          label: "26"
+        },
+        {
+          time : 5213,
+          label: "27"
+        },
+        {
+          time : 5420,
+          label: "28"
+        },
+        {
+          time : 5575,
+          label: "29"
+        },
+        {
+          time : 5781,
+          label: "30"
+        },
+        {
+          time : 5988,
+          label: "31"
+        },
+        {
+          time : 6106,
+          label: "32"
+        },
+        {
+          time : 6475,
+          label: "33"
+        },
+        {
+          time : 6810,
+          label: "34"
+        },
+        {
+          time : 7080,
+          label: "35"
+        },
+        {
+          time : 7212,
+          label: "36"
+        }
+      ]
     }
   ],
   setlist: [
-    {
-      index : 0,
-      artist: "ユニティちゃん",
-      track : "宜しくお願いしまーす！",
-      url   : "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack"
-    },
     {
       index : 1,
       artist: "松坂大祐",
@@ -296,13 +436,7 @@ export const event: EventDetail = {
       artist: "キグルミ",
       track : "たらこ・たらこ・たらこ (Love & Peace Mix)",
       url   : "https://www.jvcmusic.co.jp/-/Discography/A020546/VICL-62535.html"
-    },
-    {
-      index : 99,
-      artist: "ユニティちゃん",
-      track : "ありがとうございましたー！",
-      url   : "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack"
-    },
+    }
   ],
   galleryTwitter: [
     "2000866567371022806"

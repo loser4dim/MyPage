@@ -1,256 +1,261 @@
 import { EventDetail } from "@/types/EventDetail";
 
 export const event: EventDetail = {
-  slug : "dj-unknown-1",
+  slug: "dj-unknown-1",
   title: "DJなんもわからん EP.7",
-  date : {
-    year : 2022,
+  date: {
+    year: 2022,
     month: 3,
-    day  : 3
+    day: 3,
   },
   time: {
     start: "20:45",
-    end  : "23:40"
+    end: "23:40",
   },
   place: {
-    name    : "ClubUnknown 3rd",
+    name: "ClubUnknown 3rd",
     platform: {
-      name    : "VRChat",
-      instance: "Friends+"
+      name: "VRChat",
+      instance: "Friends+",
     },
   },
   flyer: {
-    width : 1439,
+    width: 1439,
     height: 2036,
-    image : "/dj/2022/djV1.avif"
+    image: "/dj/2022/djV1.avif",
   },
   organizers: [
     {
       name: "RcXvr_ブラッコリー",
-      url : "https://x.com/ClubUnknown_vrc"
-    }
+      url: "https://x.com/ClubUnknown_vrc",
+    },
   ],
-  support : [
+  support: [
     {
-      role  : "DJ",
+      role: "DJ",
       performers: [
         {
           name: "GENOA：げのあ",
-          url : ""
+          url: "",
         },
         {
-          name: "loser4dim"
+          name: "loser4dim",
         },
         {
           name: "micazuki",
-          url : ""
+          url: "",
         },
-        
+
         {
           name: "餅屋",
-          url : ""
-        }
-      ]
+          url: "",
+        },
+      ],
     },
     {
-      role  : "VJ",
+      role: "VJ",
       performers: [
         {
-          name: "Mano.Hsmt"
+          name: "Mano.Hsmt",
         },
         {
           name: "meg_vj_",
-          url : ""
-        }
-      ]
-    }
+          url: "",
+        },
+      ],
+    },
   ],
   announcements: [
     {
       sns: "𝕏-Twitter",
-      url: "https://x.com/ClubUnknown_vrc/status/1497520107203211265"
-    }
+      url: "https://x.com/ClubUnknown_vrc/status/1497520107203211265",
+    },
   ],
   hashtags: ["VRC_DJなんもわからん", "VRCUnknown", "VRChat"],
-  timeSlot: {
-    start   : "21:00",
-    end     : "24:00",
-    performs: [
-      {
-        start: "21:00",
-        end  : "21:40",
-        dj   : ["loser4dim"],
-        vj   : ["Mano.Hsmt"]
-      },
-      {
-        start: "21:40",
-        end  : "22:20",
-        dj   : ["micazuki"],
-        vj   : ["Mano.Hsmt"]
-      },
-      {
-        start: "22:20",
-        end  : "23:00",
-        dj   : ["餅屋"],
-        vj   : ["meg_vj_"]
-      },
-      {
-        start: "23:00",
-        end  : "23:40",
-        dj   : ["GENOA：げのあ"],
-        vj   : ["meg_vj_"]
-      }
-    ]
-  },
+  timeSlot: [
+    {
+      start: "21:00",
+      end: "24:00",
+      performs: [
+        {
+          start: "21:00",
+          end: "21:40",
+          dj: ["loser4dim"],
+          vj: ["Mano.Hsmt"],
+        },
+        {
+          start: "21:40",
+          end: "22:20",
+          dj: ["micazuki"],
+          vj: ["Mano.Hsmt"],
+        },
+        {
+          start: "22:20",
+          end: "23:00",
+          dj: ["餅屋"],
+          vj: ["meg_vj_"],
+        },
+        {
+          start: "23:00",
+          end: "23:40",
+          dj: ["GENOA：げのあ"],
+          vj: ["meg_vj_"],
+        },
+      ],
+    },
+  ],
   mixArchives: [
     {
-      type    : "mixcloud",
-      embedUrl: "https://player-widget.mixcloud.com/widget/iframe/?light=1&feed=%2Floser4dim%2F2022_3_3dj%25E3%2581%25AA%25E3%2582%2593%25E3%2582%2582%25E3%2582%258F%25E3%2581%258B%25E3%2582%2589%25E3%2582%2593ep7%2F"
+      type: "mixcloud",
+      embedUrl:
+        "https://player-widget.mixcloud.com/widget/iframe/?light=1&feed=%2Floser4dim%2F2022_3_3dj%25E3%2581%25AA%25E3%2582%2593%25E3%2582%2582%25E3%2582%258F%25E3%2581%258B%25E3%2582%2589%25E3%2582%2593ep7%2F",
     },
     {
-      type    : "cloudflare",
-      embedUrl: "https://pub-e92c9f52ee8b4ad98efb0d3b0619305c.r2.dev/2025/2025-6-28-DeepBlue.opus"
+      type: "cloudflare",
+      embedUrl:
+        "https://pub-e92c9f52ee8b4ad98efb0d3b0619305c.r2.dev/2025/2025-6-28-DeepBlue.opus",
     },
   ],
   setlist: [
     {
-      index : 1,
+      index: 1,
       artist: "ユニティちゃん",
-      track : "宜しくお願いしまーす！",
-      url   : "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack"
+      track: "宜しくお願いしまーす！",
+      url: "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack",
     },
     {
-      index : 2,
+      index: 2,
       artist: "Kabanagu",
-      track : "はじまり",
-      url   : "http://maltinerecords.cs8.biz/183.html"
+      track: "はじまり",
+      url: "http://maltinerecords.cs8.biz/183.html",
     },
     {
-      index : 3,
+      index: 3,
       artist: "Quok",
-      track : "Atariwave",
-      url   : "https://nightowlcollective.bandcamp.com/album/quok-atariwave"
+      track: "Atariwave",
+      url: "https://nightowlcollective.bandcamp.com/album/quok-atariwave",
     },
     {
-      index : 4,
+      index: 4,
       artist: "kugumo",
-      track : "	線路",
-      url   : "https://booth.pm/ja/items/376570"
+      track: "	線路",
+      url: "https://booth.pm/ja/items/376570",
     },
     {
-      index : 5,
+      index: 5,
       artist: "DJ.DAI",
-      track : "Sampling Shakin' 20 (Musicarus Remix)",
-      url   : "https://www.trekkie-trax.com/ep/trekkie10/"
+      track: "Sampling Shakin' 20 (Musicarus Remix)",
+      url: "https://www.trekkie-trax.com/ep/trekkie10/",
     },
     {
-      index : 6,
+      index: 6,
       artist: "Environments",
-      track : "The Psychologically Ultimate Seashore",
-      url   : "https://numeroenvironments.bandcamp.com/track/the-psychologically-ultimate-seashore"
+      track: "The Psychologically Ultimate Seashore",
+      url: "https://numeroenvironments.bandcamp.com/track/the-psychologically-ultimate-seashore",
     },
     {
-      index : 7,
+      index: 7,
       artist: "gaburyu feat. 初音ミク",
-      track : "swim (Alicemetix Remix)",
-      url   : "https://soundcloud.com/alicemetix/swim"
+      track: "swim (Alicemetix Remix)",
+      url: "https://soundcloud.com/alicemetix/swim",
     },
     {
-      index : 8,
+      index: 8,
       artist: "Miniland",
-      track : "My Life",
-      url   : "https://aviencloudrecords.bandcamp.com/track/my-life"
+      track: "My Life",
+      url: "https://aviencloudrecords.bandcamp.com/track/my-life",
     },
     {
-      index : 9,
+      index: 9,
       artist: "パソコン音楽クラブ feat. Tomoyuki Sagesaka",
-      track : "Locator",
-      url   : "https://see-voice.pasoconongaku.club/"
+      track: "Locator",
+      url: "https://see-voice.pasoconongaku.club/",
     },
     {
-      index : 10,
+      index: 10,
       artist: "Heavenz feat. 初音ミク",
-      track : "Fondant Step",
-      url   : "https://karent.jp/cd/16"
+      track: "Fondant Step",
+      url: "https://karent.jp/cd/16",
     },
     {
-      index : 11,
+      index: 11,
       artist: "Neko Hacker feat. 利香",
-      track : "Sweet Dreams",
-      url   : "https://nekohacker.bandcamp.com/track/sweet-dreams-feat-rika"
+      track: "Sweet Dreams",
+      url: "https://nekohacker.bandcamp.com/track/sweet-dreams-feat-rika",
     },
     {
-      index : 12,
+      index: 12,
       artist: "Fellsius",
-      track : "Talk",
-      url   : "https://www.trekkie-trax.com/ep/trekkie152/"
+      track: "Talk",
+      url: "https://www.trekkie-trax.com/ep/trekkie152/",
     },
     {
-      index : 13,
+      index: 13,
       artist: "0b4k3 feat. kinu",
-      track : "voices",
-      url   : "https://0b4k3.bandcamp.com/track/voices-feat-kinu"
+      track: "voices",
+      url: "https://0b4k3.bandcamp.com/track/voices-feat-kinu",
     },
     {
-      index : 14,
+      index: 14,
       artist: "Carpainter",
-      track : "WAR DUB FROM THE NEW WORLD",
-      url   : "https://www.trekkie-trax.com/ep/trekkie12/"
+      track: "WAR DUB FROM THE NEW WORLD",
+      url: "https://www.trekkie-trax.com/ep/trekkie12/",
     },
     {
-      index : 15,
+      index: 15,
       artist: "you",
-      track : "Party Catapult",
-      url   : "https://lilium-rec.com/rave2/"
+      track: "Party Catapult",
+      url: "https://lilium-rec.com/rave2/",
     },
     {
-      index : 16,
+      index: 16,
       artist: "I WiSH",
-      track : "明日への扉 (山田結衣 & 加瀬友香 Cover) (Kacky 90's Style HappyHardcore Bootleg)",
-      url   : "https://soundcloud.com/kacky124/kacky-90s-style-happyhardcore-bootleg"
+      track:
+        "明日への扉 (山田結衣 & 加瀬友香 Cover) (Kacky 90's Style HappyHardcore Bootleg)",
+      url: "https://soundcloud.com/kacky124/kacky-90s-style-happyhardcore-bootleg",
     },
     {
-      index : 17,
+      index: 17,
       artist: "ETIA. feat. Jenga",
-      track : "On And On!! (Groundbreaking Edit)",
-      url   : "https://gdbg.tv/release/2018-8-2"
+      track: "On And On!! (Groundbreaking Edit)",
+      url: "https://gdbg.tv/release/2018-8-2",
     },
     {
-      index : 18,
+      index: 18,
       artist: "IOSYS TRAX, ちよこ",
-      track : "超野生！サバイバルずんど子ちゃん (Extended Mix)",
-      url   : "https://www.iosysos.com/discographyportal.php?cdno=IOTX-0006"
+      track: "超野生！サバイバルずんど子ちゃん (Extended Mix)",
+      url: "https://www.iosysos.com/discographyportal.php?cdno=IOTX-0006",
     },
     {
-      index : 19,
+      index: 19,
       artist: "NJ zEn",
-      track : "プルプルAction! シュランツ消臭ポッド",
-      url   : "https://dochakuso.net/release/dcks-0001.html"
+      track: "プルプルAction! シュランツ消臭ポッド",
+      url: "https://dochakuso.net/release/dcks-0001.html",
     },
     {
-      index : 20,
+      index: 20,
       artist: "Alicemetix",
-      track : "ラーメン二郎みたいなマッシュアップ",
-      url   : "https://soundcloud.com/mr_aaaa/jirou-mashup"
+      track: "ラーメン二郎みたいなマッシュアップ",
+      url: "https://soundcloud.com/mr_aaaa/jirou-mashup",
     },
     {
-      index : 21,
+      index: 21,
       artist: "Miniland",
-      track : "My Life",
-      url   : "https://aviencloudrecords.bandcamp.com/track/my-life"
+      track: "My Life",
+      url: "https://aviencloudrecords.bandcamp.com/track/my-life",
     },
     {
-      index : 22,
+      index: 22,
       artist: "Cab Calloway, Frank Froebe, Jack Palme",
-      track : "Jumpin' Jive (Played by 東京ディズニーシー ビッグバンドビート)",
-      url   : "https://www.universal-music.co.jp/p/uwcd-8119/"
+      track: "Jumpin' Jive (Played by 東京ディズニーシー ビッグバンドビート)",
+      url: "https://www.universal-music.co.jp/p/uwcd-8119/",
     },
     {
-      index : 23,
+      index: 23,
       artist: "ユニティちゃん",
-      track : "ありがとうございましたー！",
-      url   : "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack"
-    }
+      track: "ありがとうございましたー！",
+      url: "https://unity-chan.com/download/releaseNote.php?id=UnitychanSuperUrikoVoicePack",
+    },
   ],
   galleryTwitter: [
     "1497520107203211265",
@@ -272,6 +277,6 @@ export const event: EventDetail = {
     "1499389603945467913",
     "1499388406048051201",
     "1499409304642011138",
-    "1499444836910321664"
-  ]
+    "1499444836910321664",
+  ],
 };

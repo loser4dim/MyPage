@@ -1529,8 +1529,8 @@ export const DjIndex: EventYearGroup[] = [
           },
           {
             day  : "19",
-            title: "???",
-            slug : ""
+            title: "méllon's afterlives #096",
+            slug : "mellons-afterlives-29"
           },
           {
             day  : "21",
@@ -1539,13 +1539,53 @@ export const DjIndex: EventYearGroup[] = [
           },
           {
             day  : "28",
+            title: "山車",
+            slug : "syagiri-1"
+          }
+        ]
+      },
+      {
+        month : "3",
+        events: [
+          {
+            day  : "13",
+            title: "CLOSER://SYNC",
+            slug : "closer-1"
+          },
+          {
+            day  : "19",
+            title: "???",
+            slug : ""
+          },
+          {
+            day  : "25",
+            title: "???",
+            slug : ""
+          },
+        ]
+      },
+      {
+        month : "4",
+        events: [
+          {
+            day  : "1",
+            title: "???",
+            slug : ""
+          },
+          {
+            day  : "2",
+            title: "???",
+            slug : ""
+          },
+          {
+            day  : "11",
             title: "???",
             slug : ""
           }
         ]
       },
       {
-        month : "3",
+        month : "6",
         events: [
           {
             day  : "13",
@@ -1555,10 +1595,10 @@ export const DjIndex: EventYearGroup[] = [
         ]
       },
       {
-        month : "4",
+        month : "8",
         events: [
           {
-            day  : "1",
+            day  : "30",
             title: "???",
             slug : ""
           }

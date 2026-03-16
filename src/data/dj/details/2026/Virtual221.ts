@@ -70,14 +70,16 @@ export const event: EventDetail = {
       role  : "VJ",
       performers: [
         {
-          name: "Kenbok"
+          name: "Kenbok",
+          url : "https://x.com/kenbok_vrc"
         },
         {
           name: "ろびん",
           url : "https://x.com/KafkaBuchi"
         },
         {
-          name: "rafu"
+          name: "rafu",
+          url : "https://x.com/rafu_TT"
         }
       ]
     }

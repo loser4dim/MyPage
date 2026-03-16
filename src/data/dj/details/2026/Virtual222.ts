@@ -6,7 +6,7 @@ export const event: EventDetail = {
   date: {
     year : 2026,
     month: 1,
-    day : 18
+    day  : 18
   },
   time: {
     start: "23:00",
@@ -31,6 +31,88 @@ export const event: EventDetail = {
     }
   ],
   support: [
+    {
+      role      : "Dancer",
+      performers: [
+        {
+          name: "cerisier",
+          url : "https://x.com/cerisier88mochi"
+        },
+        {
+          name: "pinatuu",
+          url : "https://x.com/pinatuuu0713"
+        },
+        {
+          name: "Stella（jp）",
+          url : "https://lit.link/Stella_SwordVRC"
+        },
+        {
+          name: "イトミヤ",
+          url : "https://x.com/itomiyagudee"
+        },
+        {
+          name: "オムレツ",
+          url : "https://omeletteak.carrd.co/"
+        },
+         {
+          name: "くろあしサン",
+          url : "https://x.com/9659hokanko"
+        },
+        {
+          name: "シュリア・ミュール",
+          url : "https://x.com/Syria_Mule"
+        },
+        {
+          name: "素麺空海",
+          url : "https://x.com/Soumen_kukai"
+        },
+        {
+          name: "月見亭弥生",
+          url : "https://x.com/TsukimiteiYayoi"
+        },
+        {
+          name: "とーしろ",
+          url : "https://x.com/toshiro0339"
+        },
+        {
+          name: "なー",
+          url : "https://x.com/unavrc"
+        },
+        {
+          name: "奈加もなか",
+          url : "https://x.com/nakamonaka_vr"
+        },
+        {
+          name: "まかろにっくす",
+          url : "https://x.com/macaronix_VRC"
+        },
+        {
+          name: "ゆっきー",
+          url : "https://x.com/f61_yuki"
+        },
+        {
+          name: "わんわんお",
+          url : "https://x.com/wanwanomk5"
+        }
+      ]
+    },
+    {
+      role      : "Bar Staff",
+      performers: [
+        {
+          name: "LUMI∗るみ∗",
+          url : "https://www.foriio.com/lumi-vr"
+        },
+        {
+          name: "ヴァルス",
+          url : "https://x.com/varcevain"
+        },
+        {
+          name: "でぃ〜ろん",
+          url : "https://x.com/D_Ron_SUN"
+        }
+      ]
+    },
     {
       role      : "DJ",
       performers: [

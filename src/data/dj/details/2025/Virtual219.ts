@@ -404,8 +404,7 @@ export const event: EventDetail = {
     {
       index : 31,
       artist: "森川由綺",
-      track : "WHITE ALBUM (R Sakuya Xmas Bootleg)",
-      url   : ""
+      track : "WHITE ALBUM (R Sakuya Xmas Bootleg)"
     },
     {
       index : 32,

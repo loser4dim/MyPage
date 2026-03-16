@@ -9,6 +9,8 @@ import { event as djV222 } from "@/data/dj/details/2026/Virtual222";
 import { event as djV223 } from "@/data/dj/details/2026/Virtual223";
 import { event as djV224 } from "@/data/dj/details/2026/Virtual224";
 
+import { event as djV229 } from "@/data/dj/details/2026/Virtual229";
+
 import { event as djR19 } from "@/data/dj/details/2025/Real19";
 
 import { event as djR20 } from "@/data/dj/details/2026/Real20";
@@ -29,6 +31,9 @@ export const allPlayEvents: Record<string, EventDetail> = {
   "club-silhouette-23": djV222,
   "the-4th-anniv"     : djV223,
   "club-silhouette-24": djV224,
+
+
+  "closer-1": djV229,
 
   "magnum-tornado-1"    : djR19,
   

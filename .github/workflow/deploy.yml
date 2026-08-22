@@ -21,11 +21,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 1. Node.js 24（node:sqlite 完全対応）をセットアップ
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
+      # 2. Node 24 環境上に直接最新 pnpm をインストール（古いNode20の干渉を完全遮断）
       - name: Install pnpm
         run: npm install -g pnpm
 

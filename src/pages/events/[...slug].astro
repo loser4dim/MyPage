@@ -318,26 +318,42 @@ const hasAnnounceOrHashtag = (announcements && announcements.length > 0) || (has
       </section>
     )}
 
-    <!-- 4. SNSギャラリー -->
+    <!-- ★ 4. SNSギャラリー（シームレス・背面ローダー方式） -->
     {gallery && gallery.length > 0 && (
-      <section class="flex flex-col items-center gap-6 border-t border-neutral-900 pt-8 w-full" id="gallery-container">
+      <section class="flex flex-col items-center gap-6 border-t border-neutral-900 pt-8 w-full">
         <h2 class="text-xs font-bold text-neutral-400 uppercase tracking-widest text-center">Gallery</h2>
-        <div class="flex flex-wrap justify-center gap-4 w-full">
+        <div class="flex flex-wrap justify-center items-start gap-6 w-full">
           {gallery.map((link) => {
             const isTwitter = /twitter\.com|x\.com/.test(link);
             const isBluesky = /bsky\.app/.test(link);
 
             return isTwitter ? (
-              <div class="w-full max-w-[300px] min-h-[280px] flex justify-center shrink-0">
-                <blockquote class="twitter-tweet" data-theme="dark" data-dnt="true">
-                  <a href={link}></a>
-                </blockquote>
+              <div class="relative w-full max-w-[300px] min-h-[300px] flex justify-center items-start shrink-0">
+                <!-- 1. 背面ローダー（z-0: ツイートが描画されるまでずっと点灯し、描画された瞬間に自然に覆い隠されるにゃ） -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-neutral-900/30 pointer-events-none z-0">
+                  <div class="w-5 h-5 border-2 border-neutral-700 border-t-miku rounded-full animate-spin"></div>
+                  <span class="text-[10px] text-neutral-500 font-mono tracking-wider">LOADING POST...</span>
+                </div>
+                <!-- 2. 前面ツイート本体（z-10） -->
+                <div class="relative z-10 w-full flex justify-center">
+                  <blockquote class="twitter-tweet" data-theme="dark" data-dnt="true" data-width="300">
+                    <a href={link}></a>
+                  </blockquote>
+                </div>
               </div>
             ) : isBluesky ? (
-              <div class="w-full max-w-[300px] min-h-[280px] flex justify-center shrink-0">
-                <blockquote class="bluesky-embed" data-bluesky-uri={link} data-bluesky-theme="dark">
-                  <a href={link}></a>
-                </blockquote>
+              <div class="relative w-full max-w-[300px] min-h-[300px] flex justify-center items-start shrink-0">
+                <!-- 1. 背面ローダー -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-neutral-900/30 pointer-events-none z-0">
+                  <div class="w-5 h-5 border-2 border-neutral-700 border-t-miku rounded-full animate-spin"></div>
+                  <span class="text-[10px] text-neutral-500 font-mono tracking-wider">LOADING POST...</span>
+                </div>
+                <!-- 2. 前面Bluesky本体 -->
+                <div class="relative z-10 w-full flex justify-center">
+                  <blockquote class="bluesky-embed" data-bluesky-uri={link} data-bluesky-theme="dark">
+                    <a href={link}></a>
+                  </blockquote>
+                </div>
               </div>
             ) : (
               <a
@@ -372,7 +388,7 @@ const hasAnnounceOrHashtag = (announcements && announcements.length > 0) || (has
   </main>
 </Layout>
 
-<!-- ★SPA遷移（View Transitions）対応の埋め込みスクリプト -->
+<!-- ★SPA遷移 & ウィジェット読み込みスクリプト -->
 <script is:inline>
   const initSocialWidgets = () => {
     // 1. Twitter / X の再スキャン & 読み込み

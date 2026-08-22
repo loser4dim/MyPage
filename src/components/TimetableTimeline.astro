@@ -41,7 +41,6 @@ const formatMinuteToExtendedTime = (totalMinutes: number) => {
 let minTime = Infinity;
 let maxTime = -Infinity;
 
-// ★イベント自体のOpen/Close時刻（例: 20:30）をタイムラインの計算基準に含めるにゃ
 let eventStartMin: number | null = null;
 if (eventTime?.start) {
   eventStartMin = parseTimeToMinutes(eventTime.start);
@@ -104,7 +103,7 @@ const processedFloors = floorGroups.map((group) => {
   };
 });
 
-// 開始時刻より前の直近の正時（20:30なら20:00）をグリッドの基点にするにゃ
+// 開始時刻より前の直近の正時をグリッドの基点にする
 const startHour = Math.floor(minTime / 60);
 const endHour = Math.ceil(maxTime / 60);
 const baseStartMin = startHour * 60;
@@ -116,7 +115,7 @@ const scale = HOUR_HEIGHT / 60; // 1分あたりの高さ(px)
 const totalFloors = Math.max(1, processedFloors.length);
 const floorWidthPercent = 100 / totalFloors;
 
-// 正時（00分）ごとの目盛り一覧（20:00, 21:00, 22:00...）
+// 正時（00分）ごとの目盛り一覧
 const hours = [];
 for (let h = startHour; h <= endHour; h++) {
   hours.push({
@@ -135,11 +134,11 @@ const hasFloorNames = processedFloors.some((f) => f.floorName);
     </h3>
   )}
 
-  <div class="relative w-full rounded-2xl border border-neutral-800/80 bg-neutral-950/60 p-4 sm:p-6 overflow-hidden select-none bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:16px_16px]">
+  <div class="relative w-full rounded-2xl border border-neutral-800/80 bg-neutral-950/60 p-4 sm:p-6 overflow-hidden select-none">
     
-    <!-- フロア名ヘッダー -->
+    <!-- フロア名ヘッダー（★ 区切り実線 border-b を完全削除） -->
     {hasFloorNames && (
-      <div class="flex items-center pb-4 mb-2 border-b border-neutral-800/60 pl-12 sm:pl-14">
+      <div class="flex items-center pb-5 pl-12 sm:pl-14">
         {processedFloors.map((floor) => (
           <div
             class="flex items-center justify-center gap-1.5 px-2 text-center"
@@ -160,13 +159,15 @@ const hasFloorNames = processedFloors.some((f) => f.floorName);
       <!-- 横方向のミク色点線グリッド & 正時目盛り -->
       {hours.map((h) => (
         <div
-          class="absolute left-0 right-0 flex items-center pointer-events-none z-0"
+          class="absolute left-0 right-0 pointer-events-none z-0"
           style={`top: ${h.top}px;`}
         >
-          <span class="text-[11px] text-neutral-400 font-bold tabular-nums w-12 sm:w-14 shrink-0 -translate-y-1/2">
+          <!-- 時間ラベル -->
+          <span class="absolute left-0 top-0 -translate-y-1/2 text-[11px] text-neutral-400 font-bold tabular-nums w-12 sm:w-14 shrink-0 leading-none">
             {h.label}
           </span>
-          <div class="flex-1 border-b border-dashed border-miku/40 -translate-y-1/2"></div>
+          <!-- 点線グリッド -->
+          <div class="absolute left-12 sm:left-14 right-0 top-0 border-t border-dashed border-miku/30"></div>
         </div>
       ))}
 

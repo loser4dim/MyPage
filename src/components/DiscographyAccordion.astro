@@ -1,0 +1,139 @@
+---
+import type { DiscographyItem } from '../data/discography';
+
+interface Props {
+  items?: DiscographyItem[];
+}
+
+const { items = [] } = Astro.props;
+
+interface NormalizedItem extends DiscographyItem {
+  day: number;
+}
+
+interface MonthGroup {
+  monthName: string;
+  monthNumber: number;
+  items: NormalizedItem[];
+}
+
+interface YearGroup {
+  year: string;
+  months: MonthGroup[];
+}
+
+const validItems = items.filter((i) => i?.date);
+const yearMap = new Map<string, Map<number, NormalizedItem[]>>();
+
+for (const item of validItems) {
+  const [yearStr = 'Unknown', monthStr = '1', dayStr = '1'] = item.date.split('-');
+  const monthNum = parseInt(monthStr, 10);
+  const dayNum = parseInt(dayStr, 10);
+
+  if (!yearMap.has(yearStr)) {
+    yearMap.set(yearStr, new Map());
+  }
+  const monthMap = yearMap.get(yearStr)!;
+  if (!monthMap.has(monthNum)) {
+    monthMap.set(monthNum, []);
+  }
+
+  monthMap.get(monthNum)!.push({
+    ...item,
+    day: dayNum,
+  });
+}
+
+const yearGroups: YearGroup[] = Array.from(yearMap.entries())
+  .sort(([a], [b]) => Number(b) - Number(a))
+  .map(([year, monthMap]) => {
+    const months: MonthGroup[] = Array.from(monthMap.entries())
+      .sort(([a], [b]) => b - a)
+      .map(([monthNum, itemList]) => ({
+        monthName: `${monthNum}月`,
+        monthNumber: monthNum,
+        items: itemList.sort((a, b) => b.day - a.day),
+      }));
+
+    return { year, months };
+  });
+
+// ★ トップページと同じ発光エフェクト付きの四角枠ボタンスタイル
+const buttonLinkStyle = "px-2.5 py-0.5 rounded-lg border border-neutral-800/80 bg-neutral-900/30 text-neutral-400 hover:border-miku/40 hover:text-miku hover:shadow-[0_0_12px_rgba(57,197,187,0.25)] transition-all duration-200 text-[10px] tracking-wider shrink-0";
+---
+
+<div class="flex flex-col gap-3 font-mono">
+  {yearGroups.length === 0 ? (
+    <p class="text-neutral-500 text-xs py-2">リリースが登録されていません</p>
+  ) : (
+    yearGroups.map(({ year, months }) => (
+      <details class="group rounded-xl border border-neutral-800/60 bg-neutral-900/20 overflow-hidden">
+        <!-- 年ヘッダー -->
+        <summary class="flex items-center justify-between px-4 py-3 cursor-pointer text-xs text-neutral-300 hover:bg-neutral-800/30 transition-colors">
+          <span class="font-bold tracking-wider">{year}年</span>
+        </summary>
+
+        <!-- 中身 -->
+        <div class="px-5 py-4 border-t border-neutral-800/40 bg-neutral-950/40">
+          {months.map(({ monthName, items: monthItems }) => (
+            <div class="mb-6 last:mb-0">
+              <!-- 月見出し -->
+              <div class="border-l-2 border-miku pl-2.5 mb-2">
+                <span class="text-xs font-bold text-neutral-300">{monthName}</span>
+              </div>
+
+              <!-- 楽曲リスト -->
+              <div class="flex flex-col gap-1.5 pl-3">
+                {monthItems.map((item) => (
+                  <div class="flex items-center justify-between gap-3 text-xs py-1.5 px-2 rounded-lg hover:bg-neutral-900/60 group/item transition-colors">
+                    
+                    <!-- 左側：日付（右揃え）＋ タイトル ＋ コンピ名 ＋ レーベル -->
+                    <div class="flex items-center gap-3 min-w-0">
+                      <span class="text-neutral-500 tabular-nums whitespace-nowrap w-7 text-right shrink-0">
+                        {item.day}日
+                      </span>
+                      
+                      <div class="flex items-baseline gap-1.5 min-w-0 truncate">
+                        <span class="text-neutral-200 font-bold truncate">
+                          {item.title}
+                        </span>
+                        
+                        {item.compilation && (
+                          <span class="text-neutral-400 shrink-0">
+                            / "{item.compilation}"
+                          </span>
+                        )}
+
+                        {item.label && (
+                          <span class="text-neutral-500 text-[11px] shrink-0">
+                            by {item.label}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <!-- 右側：リンク（トップページ同等の四角枠ボタン） -->
+                    {item.links && item.links.length > 0 && (
+                      <div class="shrink-0 flex items-center gap-1.5 pl-2">
+                        {item.links.map((link) => (
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            class={buttonLinkStyle}
+                          >
+                            {link.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </details>
+    ))
+  )}
+</div>

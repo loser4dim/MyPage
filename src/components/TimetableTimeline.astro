@@ -1,0 +1,211 @@
+---
+interface TimeSlot {
+  start: string;
+  end: string;
+  performers: string[];
+}
+
+interface FloorGroup {
+  floor?: string;
+  slots: TimeSlot[];
+}
+
+interface Props {
+  data: TimeSlot[] | FloorGroup[];
+  title?: string;
+  eventTime?: {
+    start: string;
+    end?: string;
+  };
+}
+
+const { data = [], title = 'Timetable', eventTime } = Astro.props;
+
+// データをフロアごとの配列形式に正規化
+const floorGroups: FloorGroup[] = Array.isArray(data) && data.length > 0
+  ? ('slots' in data[0] ? (data as FloorGroup[]) : [{ floor: undefined, slots: data as TimeSlot[] }])
+  : [];
+
+const parseTimeToMinutes = (timeStr: string) => {
+  const [h, m] = timeStr.split(':').map(Number);
+  return h * 60 + m;
+};
+
+// 分から24:00/28:00等の深夜通算表記に変換
+const formatMinuteToExtendedTime = (totalMinutes: number) => {
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+};
+
+let minTime = Infinity;
+let maxTime = -Infinity;
+
+// ★イベント自体のOpen/Close時刻（例: 20:30）をタイムラインの計算基準に含めるにゃ
+let eventStartMin: number | null = null;
+if (eventTime?.start) {
+  eventStartMin = parseTimeToMinutes(eventTime.start);
+  minTime = Math.min(minTime, eventStartMin);
+}
+if (eventTime?.end) {
+  let eventEndMin = parseTimeToMinutes(eventTime.end);
+  if (eventStartMin !== null && eventEndMin < eventStartMin) {
+    eventEndMin += 24 * 60;
+  }
+  maxTime = Math.max(maxTime, eventEndMin);
+}
+
+const processedFloors = floorGroups.map((group) => {
+  let prevStart = eventStartMin ?? 0;
+  const slots = group.slots.map((s) => {
+    let startMin = parseTimeToMinutes(s.start);
+    let endMin = parseTimeToMinutes(s.end);
+
+    // 深夜帯の日跨ぎ対応
+    if (startMin < prevStart && startMin < 12 * 60) {
+      startMin += 24 * 60;
+    }
+    if (endMin <= startMin) {
+      endMin += 24 * 60;
+    }
+    prevStart = startMin;
+
+    if (startMin < minTime) minTime = startMin;
+    if (endMin > maxTime) maxTime = endMin;
+
+    return {
+      ...s,
+      startMin,
+      endMin,
+      displayStart: formatMinuteToExtendedTime(startMin),
+      displayEnd: formatMinuteToExtendedTime(endMin),
+      duration: endMin - startMin,
+      subColumn: 0,
+    };
+  });
+
+  // 同一フロア内での重複判定（サブカラム振り分け）
+  let activeSubCols: number[] = [];
+  slots.forEach((slot) => {
+    let col = 0;
+    while (activeSubCols[col] !== undefined && activeSubCols[col] > slot.startMin) {
+      col++;
+    }
+    slot.subColumn = col;
+    activeSubCols[col] = slot.endMin;
+  });
+
+  const maxSubCols = Math.max(1, ...slots.map((s) => s.subColumn + 1));
+
+  return {
+    floorName: group.floor,
+    slots,
+    maxSubCols,
+  };
+});
+
+// 開始時刻より前の直近の正時（20:30なら20:00）をグリッドの基点にするにゃ
+const startHour = Math.floor(minTime / 60);
+const endHour = Math.ceil(maxTime / 60);
+const baseStartMin = startHour * 60;
+const totalMinutes = (endHour - startHour) * 60;
+
+const HOUR_HEIGHT = 100; // 1時間あたりの高さ(px)
+const scale = HOUR_HEIGHT / 60; // 1分あたりの高さ(px)
+
+const totalFloors = Math.max(1, processedFloors.length);
+const floorWidthPercent = 100 / totalFloors;
+
+// 正時（00分）ごとの目盛り一覧（20:00, 21:00, 22:00...）
+const hours = [];
+for (let h = startHour; h <= endHour; h++) {
+  hours.push({
+    label: `${h.toString().padStart(2, '0')}:00`,
+    top: (h - startHour) * HOUR_HEIGHT,
+  });
+}
+
+const hasFloorNames = processedFloors.some((f) => f.floorName);
+---
+
+<div class="w-full max-w-4xl mx-auto flex flex-col gap-3 font-mono">
+  {title && (
+    <h3 class="text-xs text-neutral-400 font-bold tracking-widest uppercase text-center mb-1">
+      {title}
+    </h3>
+  )}
+
+  <div class="relative w-full rounded-2xl border border-neutral-800/80 bg-neutral-950/60 p-4 sm:p-6 overflow-hidden select-none bg-[radial-gradient(#262626_1px,transparent_1px)] [background-size:16px_16px]">
+    
+    <!-- フロア名ヘッダー -->
+    {hasFloorNames && (
+      <div class="flex items-center pb-4 mb-2 border-b border-neutral-800/60 pl-12 sm:pl-14">
+        {processedFloors.map((floor) => (
+          <div
+            class="flex items-center justify-center gap-1.5 px-2 text-center"
+            style={{ width: `${floorWidthPercent}%` }}
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-miku shrink-0"></span>
+            <span class="text-[11px] sm:text-xs font-bold text-neutral-300 uppercase tracking-wider truncate">
+              {floor.floorName}
+            </span>
+          </div>
+        ))}
+      </div>
+    )}
+
+    <!-- 統合タイムライン描画エリア -->
+    <div class="relative w-full" style={`height: ${totalMinutes * scale}px;`}>
+      
+      <!-- 横方向のミク色点線グリッド & 正時目盛り -->
+      {hours.map((h) => (
+        <div
+          class="absolute left-0 right-0 flex items-center pointer-events-none z-0"
+          style={`top: ${h.top}px;`}
+        >
+          <span class="text-[11px] text-neutral-400 font-bold tabular-nums w-12 sm:w-14 shrink-0 -translate-y-1/2">
+            {h.label}
+          </span>
+          <div class="flex-1 border-b border-dashed border-miku/40 -translate-y-1/2"></div>
+        </div>
+      ))}
+
+      <!-- スロットカード描画エリア -->
+      <div class="absolute left-12 sm:left-14 right-0 top-0 bottom-0 z-10">
+        {processedFloors.map((floor, floorIndex) => {
+          const floorLeft = floorIndex * floorWidthPercent;
+
+          return floor.slots.map((slot) => {
+            const top = (slot.startMin - baseStartMin) * scale;
+            const height = slot.duration * scale;
+
+            const subColWidth = floorWidthPercent / floor.maxSubCols;
+            const left = floorLeft + slot.subColumn * subColWidth;
+
+            return (
+              <div
+                class="absolute px-1 sm:px-1.5 py-1 transition-all duration-200"
+                style={{
+                  top: `${top}px`,
+                  height: `${height}px`,
+                  left: `${left}%`,
+                  width: `${subColWidth}%`,
+                }}
+              >
+                <div class="w-full h-full rounded-xl border border-neutral-700/60 bg-neutral-900/90 hover:bg-neutral-800/90 hover:border-neutral-600 transition-colors shadow-lg p-2 flex flex-col items-center justify-center text-center gap-1 group">
+                  <span class="text-[10px] sm:text-xs text-neutral-400 tabular-nums">
+                    {slot.displayStart} – {slot.displayEnd}
+                  </span>
+                  <span class="text-xs sm:text-sm font-bold text-neutral-200 group-hover:text-white truncate max-w-full px-1">
+                    {slot.performers.join(' / ')}
+                  </span>
+                </div>
+              </div>
+            );
+          });
+        })}
+      </div>
+
+    </div>
+  </div>
+</div>

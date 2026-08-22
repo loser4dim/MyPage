@@ -1,0 +1,154 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja" class="bg-neutral-950 text-neutral-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    
+    <!-- ▼ここにファビコンのリンクを追加するにゃ（public/favicon.svg または favicon.ico を想定） -->
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- 全画面SPA化＆先読みエンジン -->
+    <ClientRouter />
+  </head>
+  <body class="min-h-dvh flex flex-col relative overflow-x-hidden">
+    
+    <!-- transition:persist でページをまたいで全画面で共通維持されるオーバーレイ -->
+    <div
+      id="page-loader"
+      transition:persist
+      class="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950 pointer-events-none opacity-0 transition-opacity duration-250"
+    >
+      <!-- 中央の巡回キューブ -->
+      <div id="loader-spinner" class="cube-grid-loader transition-opacity duration-100">
+        <div class="cube cube-fill"></div>
+        <div class="cube cube-bright"></div>
+        <div class="cube cube-dim"></div>
+      </div>
+    </div>
+
+    <slot />
+
+    <script>
+      // 遷移先ページ内の全画像が完全にデコードされるのを待つ関数（安全なタイムアウト付き）
+      async function waitForAssetsReady(): Promise<void> {
+        const images = Array.from(document.querySelectorAll<HTMLImageElement>('main img'));
+        if (images.length === 0) return;
+
+        const decodePromises = images.map((img) => {
+          // すでに読み込み完了している場合は即座にデコードを試みる
+          if (img.complete) {
+            return img.decode().catch(() => {});
+          }
+          // まだ読み込まれていない場合のみロードイベントを待機
+          return new Promise<void>((resolve) => {
+            img.addEventListener('load', () => img.decode().catch(() => {}).then(resolve), { once: true });
+            img.addEventListener('error', () => resolve(), { once: true });
+          });
+        });
+
+        // 万が一 load イベントが来ない場合でも、最大 250ms で強制解除してフリーズを100%防ぐ
+        const timeoutPromise = new Promise<void>((resolve) => setTimeout(resolve, 250));
+
+        await Promise.race([
+          Promise.all(decodePromises),
+          timeoutPromise,
+        ]);
+      }
+
+      function hideLoader() {
+        const loader = document.getElementById('page-loader');
+        const spinner = document.getElementById('loader-spinner');
+        if (loader && spinner) {
+          spinner.classList.add('opacity-0');
+          loader.classList.remove('opacity-100', 'pointer-events-auto');
+          loader.classList.add('opacity-0', 'pointer-events-none');
+        }
+      }
+
+      // 1. 遷移が始まった瞬間
+      document.addEventListener('astro:before-preparation', () => {
+        const loader = document.getElementById('page-loader');
+        const spinner = document.getElementById('loader-spinner');
+        if (loader && spinner) {
+          spinner.classList.remove('opacity-0');
+          loader.classList.remove('opacity-0', 'pointer-events-none');
+          loader.classList.add('opacity-100', 'pointer-events-auto');
+        }
+      });
+
+      // 2. 新しいページの準備が整った瞬間
+      document.addEventListener('astro:page-load', async () => {
+        await waitForAssetsReady();
+        hideLoader();
+      });
+
+      // 3. ブラウザバック (bfcache) 復元時のセーフティガード
+      window.addEventListener('pageshow', () => {
+        hideLoader();
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  /* 2x2マスの巡回ローダー */
+  .cube-grid-loader {
+    position: relative;
+    width: 44px;
+    height: 44px;
+  }
+
+  .cube {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+    animation: cube-loop 1.4s infinite ease-in-out;
+  }
+
+  .cube-fill {
+    background-color: #507572;
+    animation-delay: 0s;
+  }
+
+  .cube-bright {
+    border: 2px solid #d4e0e0;
+    animation-delay: -0.35s;
+  }
+
+  .cube-dim {
+    border: 2px solid #233e3d;
+    animation-delay: -0.7s;
+  }
+
+  @keyframes cube-loop {
+    0%, 100% {
+      top: 0;
+      left: 0;
+    }
+    25% {
+      top: 0;
+      left: 24px;
+    }
+    50% {
+      top: 24px;
+      left: 24px;
+    }
+    75% {
+      top: 24px;
+      left: 0;
+    }
+  }
+</style>

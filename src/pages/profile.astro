@@ -1,0 +1,205 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import vrchatPhoto from '../assets/picture.webp';
+import EventAccordion from '../components/EventAccordion.astro';
+import DiscographyAccordion from '../components/DiscographyAccordion.astro';
+import { discographyData } from '../data/discography';
+
+const avatars = [
+  {
+    name: 'KRONOS',
+    creator: '典樹',
+    href: 'https://yoyogi-mori.booth.pm/items/2032707',
+  },
+  {
+    name: 'DARK CAT WITCH',
+    creator: 'Beroar',
+    href: 'https://yoyogi-mori.booth.pm/items/7587259',
+  },
+];
+
+const eventLinks = {
+  vjShitai: 'https://x.com/VJshitai',
+  clubSilhouette: 'https://x.com/vrc_silhouette',
+};
+
+const techStack = [
+  { name: 'Rust', icon: 'simple-icons:rust', href: 'https://www.rust-lang.org/' },
+  { name: 'C++', icon: 'simple-icons:cplusplus', href: 'https://isocpp.org/' },
+  { name: 'C#', icon: 'simple-icons:csharp', href: 'https://learn.microsoft.com/dotnet/csharp/' },
+  { name: 'Python', icon: 'simple-icons:python', href: 'https://www.python.org/' },
+  { name: 'Go', icon: 'simple-icons:go', href: 'https://go.dev/' },
+  { name: 'Ruby', icon: 'simple-icons:ruby', href: 'https://www.ruby-lang.org/' },
+  { name: 'TypeScript', icon: 'simple-icons:typescript', href: 'https://www.typescriptlang.org/' },
+  { name: 'GLSL / OpenGL', icon: 'simple-icons:opengl', href: 'https://www.opengl.org/' },
+  { name: 'Vulkan', icon: 'simple-icons:vulkan', href: 'https://www.vulkan.org/' },
+  { name: 'Unity', icon: 'simple-icons:unity', href: 'https://unity.com/' },
+  { name: 'React', icon: 'simple-icons:react', href: 'https://react.dev/' },
+  { name: 'Astro', icon: 'simple-icons:astro', href: 'https://astro.build/' },
+  { name: 'Ansible', icon: 'simple-icons:ansible', href: 'https://www.ansible.com/' },
+  { name: 'Docker', icon: 'simple-icons:docker', href: 'https://www.docker.com/' },
+  { name: 'AWS', icon: 'simple-icons:amazonaws', href: 'https://aws.amazon.com/' },
+  { name: 'Linux', icon: 'simple-icons:linux', href: 'https://www.linux.org/' },
+  { name: 'Microsoft Office', icon: 'simple-icons:microsoftoffice', href: 'https://www.office.com/' },
+  { name: 'Google Sheets', icon: 'simple-icons:googlesheets', href: 'https://docs.google.com/spreadsheets/d/14wxqxXo4kN2PtHyhqtHex0JdNFM6iWLvkUlVyT_NGuc/edit?usp=sharing' },
+  { name: 'Git', icon: 'simple-icons:git', href: 'https://git-scm.com/' },
+  { name: 'GitHub', icon: 'simple-icons:github', href: 'https://github.com/' },
+  { name: 'GitHub Actions', icon: 'simple-icons:githubactions', href: 'https://github.com/features/actions' },
+  { name: 'GitLab', icon: 'simple-icons:gitlab', href: 'https://about.gitlab.com/' },
+  { name: 'Jenkins', icon: 'simple-icons:jenkins', href: 'https://www.jenkins.io/' },
+  { name: 'Playwright', icon: 'simple-icons:playwright', href: 'https://playwright.dev/' },
+];
+
+const allEvents = await getCollection('events');
+allEvents.sort((a, b) => b.data.date.localeCompare(a.data.date));
+
+const performanceEvents = allEvents.filter((e) => e.data.category === 'performance');
+const organizedEvents = allEvents.filter((e) => e.data.category === 'organized');
+const technicalEvents = allEvents.filter((e) => e.data.category === 'technical');
+
+const linkStyle = "underline underline-offset-4 decoration-neutral-700 hover:text-miku hover:decoration-miku transition-colors duration-200";
+---
+
+<Layout title="Profile | loser4dim">
+  <main class="min-h-dvh flex flex-col justify-between px-6 py-12 sm:py-16 md:py-20 max-w-4xl mx-auto w-full">
+    
+    <div class="w-full flex flex-col gap-12 sm:gap-16">
+      
+      <!-- 1. Bio / Introduction -->
+      <section class="flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-10">
+        
+        <!-- 写真枠 -->
+        <div class="relative group shrink-0 w-full max-w-[280px] sm:max-w-[300px] md:max-w-none md:w-[240px] lg:w-[250px] aspect-[4/5] md:aspect-auto rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900/40 shadow-[0_0_25px_rgba(0,0,0,0.5)] transition-all duration-300 hover:border-miku/40 hover:shadow-[0_0_20px_rgba(57,197,187,0.2)]">
+          <Image
+            src={vrchatPhoto}
+            alt="loser4dim in VRChat"
+            class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 md:absolute md:inset-0"
+            loading="eager"
+          />
+        </div>
+        
+        <!-- 右側コンテンツ -->
+        <div class="flex flex-col justify-between gap-4 text-neutral-400 font-mono w-full min-w-0 flex-1">
+          <div class="flex flex-col gap-3">
+            <div>
+              <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-none text-center md:text-left">loser4dim</h1>
+            </div>
+            
+            <p class="text-xs sm:text-sm leading-relaxed">
+              2022年3月にVR-DJとして活動開始。<br />
+              "今日のジャンルですか？DJがチルと言えばチルですね。"主宰。<br />
+              個性的アーティスト集団"BUG COLLECTIVE"、VJ初心者メインイベント<a
+                href={eventLinks.vjShitai}
+                target="_blank"
+                rel="noreferrer noopener"
+                class={linkStyle}
+              >"VJしたいっ"</a>、VRダンスクラブ<a
+                href={eventLinks.clubSilhouette}
+                target="_blank"
+                rel="noreferrer noopener"
+                class={linkStyle}
+              >"CLUB SILHOUETTE"</a>、 Music Barイベント"Bar羽休め"にレギュラーDJとして所属。<br />
+              VRChatでのクラブイベントに誘われたのがきっかけでクラブミュージックと出会い、そのときの感動を伝えていこうと自身もDJを始める。<br />
+              "Happy - Funny - Crazy - with LOVE" を信条に、ジャンルを問わず自由気ままなDJを展開する。
+            </p>
+          </div>
+
+          <!-- メタ情報エリア (Avatar & Tech Stack) -->
+          <div class="pt-2.5 flex flex-col gap-3 border-t border-neutral-900/80 w-full items-center">
+            
+            <!-- 使用アバター一覧 -->
+            <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-neutral-500 w-full">
+              <span class="text-neutral-600 shrink-0">Avatar:</span>
+              <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                {avatars.map((avatar, index) => (
+                  <div class="flex items-center gap-1.5">
+                    <a
+                      href={avatar.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      class="group/link inline-flex items-center gap-1 text-neutral-400 hover:text-miku transition-colors duration-200"
+                    >
+                      <span class="underline underline-offset-4 decoration-neutral-700 group-hover/link:decoration-miku">{avatar.name}</span>
+                      <span class="text-[10px] text-neutral-600 group-hover/link:text-miku/80">by {avatar.creator}</span>
+                    </a>
+                    {index < avatars.length - 1 && <span class="text-neutral-700">/</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- 技術スタック アイコン一覧 -->
+            <div class="flex flex-col gap-1.5 w-full items-center">
+              <div class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 gap-1.5 w-fit text-neutral-400 justify-items-center">
+                {techStack.map((tech) => (
+                  <a
+                    href={tech.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-neutral-900/30 border border-neutral-800/80 text-neutral-400 hover:text-miku hover:border-miku/40 hover:bg-neutral-900/60 hover:[filter:drop-shadow(0_0_6px_rgba(57,197,187,0.45))] transition-all duration-200 flex items-center justify-center cursor-pointer group/tech shrink-0"
+                    title={tech.name}
+                    aria-label={tech.name}
+                  >
+                    <Icon name={tech.icon} class="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain transition-transform duration-200 group-hover/tech:scale-110" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- DJ (Performance) -->
+      <section class="flex flex-col gap-4">
+        <h2 class="text-base font-bold text-white uppercase tracking-wider border-b border-neutral-800 pb-2">
+          DJ / Performance
+        </h2>
+        <EventAccordion events={performanceEvents} />
+      </section>
+
+      <!-- 主催 (Organized) -->
+      <section class="flex flex-col gap-4">
+        <h2 class="text-base font-bold text-white uppercase tracking-wider border-b border-neutral-800 pb-2">
+          Organized
+        </h2>
+        <EventAccordion events={organizedEvents} />
+      </section>
+
+      <!-- 技術協力 (Technical) -->
+      <section class="flex flex-col gap-4">
+        <h2 class="text-base font-bold text-white uppercase tracking-wider border-b border-neutral-800 pb-2">
+          Technical Support
+        </h2>
+        <EventAccordion events={technicalEvents} />
+      </section>
+
+      <!-- Discography（他セクションと完全統一） -->
+      <section class="flex flex-col gap-4">
+        <h2 class="text-base font-bold text-white uppercase tracking-wider border-b border-neutral-800 pb-2">
+          Discography
+        </h2>
+        <DiscographyAccordion items={discographyData} />
+      </section>
+
+    </div>
+
+    <!-- フッター -->
+    <footer class="w-full flex flex-col sm:flex-row justify-between items-center sm:items-end gap-4 pt-16 border-t border-neutral-900 mt-16">
+      <span class="font-mono text-[10px] text-neutral-600 tracking-widest order-2 sm:order-1">
+        &copy; {new Date().getFullYear()} loser4dim
+      </span>
+
+      <a
+        href="/"
+        class={`text-xs font-mono text-neutral-500 tracking-wider order-1 sm:order-2 ${linkStyle}`}
+        aria-label="Back to top"
+      >
+        Top
+      </a>
+    </footer>
+  </main>
+</Layout>

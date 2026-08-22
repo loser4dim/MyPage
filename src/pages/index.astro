@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import logo from '../assets/logo.webp';
+
+const iconSocials = [
+  { name: 'VRChat', icon: 'simple-icons:vrchat', href: 'https://vrchat.com/home/user/usr_22d7c048-3c45-478b-b492-88347fbbc1fc' },
+  { name: 'Bluesky', icon: 'simple-icons:bluesky', href: 'https://bsky.app/profile/loser4dim.jp' },
+  { name: 'Misskey.io', icon: 'simple-icons:misskey', href: 'https://misskey.io/@loser4dim' },
+  { name: 'Mixcloud', icon: 'simple-icons:mixcloud', href: 'https://www.mixcloud.com/loser4dim/' },
+  { name: 'Bandcamp', icon: 'simple-icons:bandcamp', href: 'https://loser4dim.bandcamp.com/music' },
+  { name: 'SoundCloud', icon: 'simple-icons:soundcloud', href: 'https://soundcloud.com/loser4dim/tracks' },
+  { name: 'Twitch', icon: 'simple-icons:twitch', href: 'https://www.twitch.tv/loser4dim' },
+  { name: 'Instagram', icon: 'simple-icons:instagram', href: 'https://www.instagram.com/loser4dim' },
+  { name: 'X', icon: 'simple-icons:x', href: 'https://x.com/loser4dim' }
+  
+];
+
+// 2. テキストで表示するサービス（計3個）
+const textSocials = [
+  { name: 'Bandcamp (Fan)', href: 'https://bandcamp.com/loser4dim' },
+  { name: 'ToneDen', href: 'https://www.toneden.io/loser4dim' },
+  { name: 'mixi2', href: 'https://mixi.social/@loser4dim' },
+];
+---
+
+<Layout title="loser4dim">
+  <!-- min-h-dvh で全体を中央配置 -->
+  <main class="min-h-dvh flex flex-col items-center justify-center p-6 gap-10">
+    
+    <!-- センターロゴ（data-load-transition を追加） -->
+    <a
+      href="/profile"
+      data-load-transition
+      class="group flex flex-col items-center focus:outline-none transition-all duration-300"
+      aria-label="Profile"
+    >
+      <Image
+        src={logo}
+        alt="loser4dim"
+        class="h-[42vh] max-h-[460px] w-auto max-w-[88vw] object-contain transition-all duration-300 group-hover:[filter:drop-shadow(0_0_10px_rgba(57,197,187,0.7))_drop-shadow(0_0_30px_rgba(57,197,187,0.3))] active:scale-[0.99]"
+        loading="eager"
+      />
+    </a>
+
+    <!-- SNS リンクエリア -->
+    <footer class="flex flex-col items-center gap-6 w-full max-w-2xl">
+      <nav class="flex flex-col items-center gap-4 w-full" aria-label="Social Links">
+        
+        <!-- アイコン列 -->
+        <div class="grid grid-cols-3 md:grid-cols-9 gap-2 place-items-center w-fit mx-auto">
+          {iconSocials.map((item) => (
+            <a
+              href={item.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              class="w-12 h-12 flex items-center justify-center text-neutral-400 hover:text-miku transition-all duration-200 hover:[filter:drop-shadow(0_0_8px_rgba(57,197,187,0.45))] rounded-xl hover:bg-neutral-900/40"
+              title={item.name}
+              aria-label={item.name}
+            >
+              <Icon name={item.icon} class="w-7 h-7 object-contain" />
+            </a>
+          ))}
+        </div>
+
+        <!-- テキストリンク列 -->
+        <div class="flex flex-wrap justify-center items-center gap-2.5 text-xs font-mono text-neutral-400">
+          {textSocials.map((item) => (
+            <a
+              href={item.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              class="px-3.5 py-1.5 rounded-lg border border-neutral-800/80 bg-neutral-900/30 hover:border-miku/40 hover:text-miku hover:shadow-[0_0_12px_rgba(57,197,187,0.25)] transition-all duration-200 tracking-wider"
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <!-- コピーライト表記 -->
+      <span class="font-mono text-[10px] text-neutral-600 tracking-widest mt-1">
+        &copy; {new Date().getFullYear()} loser4dim
+      </span>
+    </footer>
+  </main>
+</Layout>

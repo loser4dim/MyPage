@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --color-miku: #39c5bb;
+  --color-miku-glow: rgba(57, 197, 187, 0.4);
+  --color-bg-deep: #080c0e;
+  --color-text-muted: #8b9ca7;
+}

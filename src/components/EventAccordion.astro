@@ -1,0 +1,106 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  events?: CollectionEntry<'events'>[];
+}
+
+const { events = [] } = Astro.props;
+
+const validEvents = events.filter((e) => e?.data?.date);
+const yearMap = new Map<string, Map<number, any[]>>();
+
+for (const event of validEvents) {
+  const [y, m, d] = event.data.date.split('-').map(Number);
+  
+  if (!yearMap.has(y.toString())) {
+    yearMap.set(y.toString(), new Map());
+  }
+  const mMap = yearMap.get(y.toString())!;
+  if (!mMap.has(m)) {
+    mMap.set(m, []);
+  }
+
+  const eventSlug = event.data.customSlug || event.id.replace(/\.[^/.]+$/, '');
+
+  let genreText = '';
+  if (event.data.genre) {
+    genreText = Array.isArray(event.data.genre) 
+      ? event.data.genre.join(', ') 
+      : event.data.genre;
+  }
+
+  mMap.get(m)!.push({ 
+    slug: eventSlug, 
+    day: d, 
+    date: event.data.date, 
+    title: event.data.title, 
+    category: event.data.category,
+    role: event.data.role,
+    genreText,
+  });
+}
+
+const yearGroups = Array.from(yearMap.entries())
+  .sort(([a], [b]) => Number(b) - Number(a))
+  .map(([year, mMap]) => ({
+    year,
+    months: Array.from(mMap.entries())
+      .sort(([a], [b]) => b - a)
+      .map(([m, evs]) => ({
+        name: `${m}月`,
+        // 日付の数値で正しく降順ソートにゃ
+        events: evs.sort((a, b) => b.day - a.day)
+      }))
+  }));
+---
+
+<div class="flex flex-col gap-3 font-mono">
+  {yearGroups.length === 0 ? (
+    <p class="text-neutral-500 text-xs py-2">イベントが登録されていません</p>
+  ) : (
+    yearGroups.map(({ year, months }) => (
+      <details class="group rounded-xl border border-neutral-800/60 bg-neutral-900/20 overflow-hidden">
+        <summary class="flex items-center justify-between px-4 py-3 cursor-pointer text-xs text-neutral-300 hover:bg-neutral-800/30 transition-colors">
+          <span class="font-bold tracking-wider">{year}年</span>
+        </summary>
+        <div class="px-5 py-4 border-t border-neutral-800/40 bg-neutral-950/40">
+          {months.map(({ name, events }) => (
+            <div class="mb-6 last:mb-0">
+              <div class="border-l-2 border-miku pl-2.5 mb-2">
+                <span class="text-xs font-bold text-neutral-300">{name}</span>
+              </div>
+              <div class="flex flex-col gap-1.5 pl-3">
+                {events.map((e) => (
+                  <a
+                    href={`/events/${e.slug}`}
+                    class="flex items-center justify-between gap-3 text-xs py-1.5 px-2 rounded-lg hover:bg-neutral-900/60 group/item transition-colors"
+                  >
+                    <div class="flex items-center gap-3 min-w-0">
+                      {/* ★ 幅を固定してテキストを右揃えに配置にゃ */}
+                      <span class="text-neutral-500 tabular-nums whitespace-nowrap w-7 text-right shrink-0">
+                        {e.day}日
+                      </span>
+                      <span class="text-neutral-200 font-bold underline decoration-neutral-700 group-hover/item:text-miku group-hover/item:decoration-miku transition-colors truncate">
+                        {e.title}
+                      </span>
+                    </div>
+                    
+                    <div class="shrink-0 text-neutral-500 pl-2">
+                      {e.category === 'technical' && e.role && (
+                        <span class="text-miku">[{e.role}]</span>
+                      )}
+                      {(e.category === 'performance' || e.category === 'organized') && e.genreText && (
+                        <span class="text-neutral-400">({e.genreText})</span>
+                      )}
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </details>
+    ))
+  )}
+</div>
